@@ -8,16 +8,35 @@ from ff.utils import get_fantasy_points
 team_names = json.load(open("data/team_names.json"))
 team_bye_weeks = json.load(open("data/bye_weeks.json"))
 
-POSITION: TypeAlias = Literal[
-    "QB",
-    "RB",
-    "WR",
-    "TE",
-    "K",
-    "DEF",
+POSITIONS = ["QB", "RB", "WR", "TE", "K", "DEF"]
+EXTRA_POSITIONS = [
+    "LB",
+    "OT",
+    "FS",
+    "DE",
+    "C",
+    "ILB",
+    "NT",
+    "DB",
+    "DT",
+    "OL",
+    "FB",
+    "OG",
+    "DL",
+    "P",
+    "CB",
+    "T",
+    "K/P",
+    "S",
+    "LS",
+    "G",
+    "OLB",
+    "SS",
 ]
 
-EXTRA_POSITIONS: TypeAlias = Literal[
+Position: TypeAlias = Literal["QB", "RB", "WR", "TE", "K", "DEF"]
+
+ExtraPosition: TypeAlias = Literal[
     "LB",
     "OT",
     "FS",
@@ -63,12 +82,13 @@ TEAMS = {
 class Player(BaseModel):
     player_id: str = Field(alias="player_id")
     name: str = Field(alias="full_name", default="")
-    position: Optional[POSITION | EXTRA_POSITIONS] = Field(
-        alias="position", default=None
-    )
+    position: Optional[Position | ExtraPosition] = Field(alias="position", default=None)
     team: Optional[Team] = None
     number: Optional[int] = Field(alias="number", default=None)
     active: bool = Field(alias="active")
+
+    def is_relevant(self) -> bool:
+        return self.active and self.position in POSITIONS and self.team is not None
 
     @model_validator(mode="before")
     def parse_team(cls, values):
@@ -133,7 +153,7 @@ class WeeklyStats(BaseModel):
     # Fantasy points
     fantasy_points_data: float = Field(alias="pts_ppr", default=0.0)
 
-    def fantasy_points(self, position: POSITION) -> float:
+    def fantasy_points(self, position: Position) -> float:
         return get_fantasy_points(self, position)
 
 

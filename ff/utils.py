@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ff.models import POSITION, WeeklyStats
+    from ff.models import Position, WeeklyStats
 
 
 def get_allowed_points_points(allowed_points: int) -> int:
@@ -20,7 +20,7 @@ def get_allowed_points_points(allowed_points: int) -> int:
     return -4
 
 
-def get_fantasy_points(stats: "WeeklyStats", position: "POSITION") -> float:
+def get_fantasy_points(stats: "WeeklyStats", position: "Position") -> float:
     if position in ["QB", "RB", "WR", "TE"]:
         points = (
             stats.pass_yds / 25

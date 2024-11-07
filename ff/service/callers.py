@@ -1,20 +1,20 @@
 import json
 import os
-from typing import Dict
+from typing import Dict, List, Tuple
 
 from ff.models import Game, Player, WeeklyProjection, WeeklyStats
 from ff.service.client import get_players, get_weekly_projections, get_weekly_stats
 
 
-def load_players():
+def load_players(force_update: bool = False) -> List[Player]:
     file_path = "data/players.json"
-    if os.path.exists(file_path):
+    if os.path.exists(file_path) and not force_update:
         with open(file_path, "r") as f:
             players_dict = json.load(f)
     else:
         players_dict = get_players()
 
-    players = []
+    players: List[Player] = []
     for player_id, player_info in players_dict.items():
         player = Player(**player_info)
         players.append(player)
@@ -22,9 +22,9 @@ def load_players():
     return players
 
 
-def load_weekly_stats(week: int):
+def load_weekly_stats(week: int, force_update: bool = False) -> Dict[str, WeeklyStats]:
     file_path = f"data/stats/week{week}.json"
-    if os.path.exists(file_path):
+    if os.path.exists(file_path) and not force_update:
         with open(file_path, "r") as f:
             stats_dict = json.load(f)
     else:
@@ -40,9 +40,11 @@ def load_weekly_stats(week: int):
     return weekly_stats
 
 
-def load_weekly_projections(week: int):
+def load_weekly_projections(
+    week: int, force_update: bool = False
+) -> Dict[str, WeeklyProjection]:
     file_path = f"data/projections/week{week}.json"
-    if os.path.exists(file_path):
+    if os.path.exists(file_path) and not force_update:
         with open(file_path, "r") as f:
             projections_dict = json.load(f)
     else:
@@ -58,15 +60,17 @@ def load_weekly_projections(week: int):
     return weekly_projections
 
 
-def load_all_stats(current_week: int):
-    all_stats: Dict[int, WeeklyStats] = {}
+def load_all_stats(
+    current_week: int, force_update: bool = False
+) -> Tuple[Dict[int, Dict[str, WeeklyStats]], Dict[int, Dict[str, WeeklyProjection]]]:
+    all_stats: Dict[int, Dict[str, WeeklyStats]] = {}
     for week in range(1, current_week):
-        weekly_stats = load_weekly_stats(week)
+        weekly_stats = load_weekly_stats(week, force_update)
         all_stats[week] = weekly_stats
 
-    all_projections: Dict[int, WeeklyProjection] = {}
+    all_projections: Dict[int, Dict[str, WeeklyProjection]] = {}
     for week in range(1, 19):
-        weekly_projections = load_weekly_projections(week)
+        weekly_projections = load_weekly_projections(week, force_update)
         all_projections[week] = weekly_projections
 
     return all_stats, all_projections
@@ -74,9 +78,10 @@ def load_all_stats(current_week: int):
 
 def load_schedule():
     file_path = "data/schedule.json"
-    if os.path.exists(file_path):
-        with open(file_path, "r") as f:
-            schedule_dict = json.load(f)
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"File not found: {file_path}")
+    with open(file_path, "r") as f:
+        schedule_dict = json.load(f)
 
     schedule = [Game(**game) for game in schedule_dict]
 

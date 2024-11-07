@@ -2,7 +2,7 @@ from typing import Dict, List, Tuple
 
 from pandas import DataFrame
 
-from ff.models import TEAMS, Player, WeeklyProjection, WeeklyStats
+from ff.models import POSITIONS, TEAMS, Player, WeeklyProjection, WeeklyStats
 
 
 def create_defense_player(team_short: str) -> Player:
@@ -45,9 +45,7 @@ def get_relevant_players(all_players: List[Player]) -> List[Player]:
     individuals = [
         player
         for player in all_players
-        if player.active
-        and player.team
-        and player.position in ["QB", "RB", "WR", "TE", "K"]
+        if player.active and player.team and player.position in POSITIONS
     ]
     defenses = [create_defense_player(team_short) for team_short in TEAMS.keys()]
 
@@ -56,30 +54,38 @@ def get_relevant_players(all_players: List[Player]) -> List[Player]:
 
 def write_table(
     relevant_players: List[Player],
-    all_stats: List[WeeklyStats],
-    all_projections: List[WeeklyProjection],
+    all_stats: Dict[int, Dict[str, WeeklyStats]],
+    all_projections: Dict[int, Dict[str, WeeklyProjection]],
     schedule_dict: Dict[Tuple[int, str], str],
+    path: str = "data/weekly_fantasy_points.csv",
 ):
-    data = DataFrame()
 
-    for week in range(1, 18):
-        for player in relevant_players:
-            stats = all_stats[week].get(player.player_id) if week in all_stats else None
-            projection = all_projections[week].get(player.player_id)
-            data = data._append(
-                {
-                    "Player": player.name,
-                    "Position": player.position,
-                    "Team": player.team.short,
-                    "Opponent": schedule_dict.get((week, player.team.short), None),
-                    "Week": week,
-                    "Fantasy Points": (
-                        stats.fantasy_points(player.position) if stats else None
-                    ),
-                    "Projection": (projection.projected_points if projection else None),
-                },
-                ignore_index=True,
-            )
+    assert all(
+        player.is_relevant() for player in relevant_players
+    ), "All players must be relevant"
 
-    data.to_csv("data/weekly_fantasy_points.csv", index=False)
+    data = DataFrame(
+        {
+            "Player": player.name,
+            "Position": player.position,
+            "Team": player.team.short,  # type: ignore
+            "Opponent": schedule_dict.get((week, player.team.short), None),  # type: ignore
+            "Week": week,
+            "Fantasy Points": (
+                all_stats[week][player.player_id].fantasy_points(player.position)  # type: ignore
+                if week in all_stats and player.player_id in all_stats[week]
+                else None
+            ),
+            "Projection": (
+                all_projections[week][player.player_id].projected_points
+                if week in all_projections and player.player_id in all_projections[week]
+                else None
+            ),
+        }
+        for week in range(1, 18)
+        for player in relevant_players
+        if player.is_relevant()
+    )
+
+    data.to_csv(path, index=False)
     return data
