@@ -1,1 +1,4 @@
 poetry.lock
+.Rproj.user
+__pycache__/
+.Rhistory
