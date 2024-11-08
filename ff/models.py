@@ -1,12 +1,12 @@
 import json
-from typing import Literal, Optional, TypeAlias
+from typing import Dict, Literal, Optional, TypeAlias
 
 from pydantic import BaseModel, Field, model_validator
 
 from ff.utils import get_fantasy_points
 
-team_names = json.load(open("data/team_names.json"))
-team_bye_weeks = json.load(open("data/bye_weeks.json"))
+team_names: Dict[str, str] = json.load(open("data/team_names.json"))
+team_bye_weeks: Dict[str, int] = json.load(open("data/bye_weeks.json"))
 
 POSITIONS = ["QB", "RB", "WR", "TE", "K", "DEF"]
 EXTRA_POSITIONS = [
@@ -71,7 +71,7 @@ class Team(BaseModel):
         return hash(self.short)
 
 
-TEAMS = {
+TEAMS: Dict[str, Team] = {
     short: Team(short=short, name=name, bye_week=bye_week)
     for short, name, bye_week in zip(
         team_names.keys(), team_names.values(), team_bye_weeks.values()
