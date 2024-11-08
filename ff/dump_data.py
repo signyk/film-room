@@ -6,9 +6,16 @@ from ff.service.callers import load_all_stats, load_players, load_schedule
 all_players = load_players(force_update=False)
 relevant_players = get_relevant_players(all_players)
 current_week = 10
-all_stats, all_projections = load_all_stats(current_week, force_update=True)
+all_stats, all_projections = load_all_stats(current_week, force_update=False)
 schedule = load_schedule()
 home_week_to_away: Dict[Tuple[int, str], str] = {
     (game.week, game.home_team.short): game.away_team.short for game in schedule
 }
-write_table(relevant_players, all_stats, all_projections, home_week_to_away)
+away_week_to_home: Dict[Tuple[int, str], str] = {
+    (game.week, game.away_team.short): game.home_team.short for game in schedule
+}
+team_week_to_opponent: Dict[Tuple[int, str], str] = {
+    **home_week_to_away,
+    **away_week_to_home,
+}
+write_table(relevant_players, all_stats, all_projections, team_week_to_opponent)
