@@ -2,3 +2,4 @@ poetry.lock
 .Rproj.user
 __pycache__/
 .Rhistory
+.DS_Store
