@@ -1,0 +1,50 @@
+{
+    "AFC North": [
+        "BAL",
+        "CIN",
+        "CLE",
+        "PIT"
+    ],
+    "AFC South": [
+        "HOU",
+        "IND",
+        "JAX",
+        "TEN"
+    ],
+    "AFC East": [
+        "BUF",
+        "MIA",
+        "NE",
+        "NYJ"
+    ],
+    "AFC West": [
+        "DEN",
+        "KC",
+        "LV",
+        "LAC"
+    ],
+    "NFC North": [
+        "CHI",
+        "DET",
+        "GB",
+        "MIN"
+    ],
+    "NFC South": [
+        "ATL",
+        "CAR",
+        "NO",
+        "TB"
+    ],
+    "NFC East": [
+        "DAL",
+        "NYG",
+        "PHI",
+        "WAS"
+    ],
+    "NFC West": [
+        "ARI",
+        "LAR",
+        "SF",
+        "SEA"
+    ]
+}
