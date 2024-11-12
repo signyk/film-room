@@ -8,6 +8,13 @@ data <- data_raw %>%
 
 data %>%
   group_by(Player, Team, Position) %>%
+  summarise("Total Points" = sum(Fantasy.Points, na.rm = TRUE), .groups = "keep") %>%
+  ungroup() %>% 
+  arrange(desc(`Total Points`)) %>%
+  slice(1:20)
+
+data %>%
+  group_by(Player, Team, Position) %>%
   summarise(total_points = sum(Fantasy.Points, na.rm = TRUE)) %>%
     group_by(Position) %>%
   arrange(desc(total_points)) %>%
@@ -24,7 +31,7 @@ data %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_y_continuous(labels = scales::comma)
 
-CURRENT_WEEK <- 10
+CURRENT_WEEK <- 11
 
 data_dependable <- data %>% 
     group_by(Player) %>%
