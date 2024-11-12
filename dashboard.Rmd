@@ -24,7 +24,7 @@ load_packages()
 
 source("R/colors.R")
 source("R/teams.R")
-source("R/plot_theme.R")
+source("R/utils.R")
 
 data_raw <- read.csv("data/weekly_fantasy_points.csv")
 dat_s <- data_raw %>%
@@ -134,23 +134,23 @@ dat <- reactive({
            "Mean Projected Points" = mean(Projection, na.rm = TRUE),
            projected_rest_of_season = sum(ifelse(Week >= CURRENT_WEEK, Projection, 0), na.rm = TRUE),
            sd_fantasy_points = sd(Fantasy.Points, na.rm = TRUE),
-           sd_projection = sd(Projection, na.rm = TRUE),
-           mean_fantasy_points = mean(Fantasy.Points, na.rm = TRUE),
-           mean_projection = mean(Projection, na.rm = TRUE)) %>% 
+           sd_projection = sd(Projection, na.rm = TRUE)) %>% 
     ungroup() %>% 
-    mutate(cv = sd_fantasy_points / mean_fantasy_points) %>% 
+    mutate(cv = sd_fantasy_points / `Mean Points`) %>% 
+    mutate(cv = if_else(is.infinite(cv) | is.na(cv), 0, cv)) %>%
+    mutate(`Mean Points` = if_else(is.infinite(`Mean Points`) | is.na(`Mean Points`), 0, `Mean Points`)) %>%
     mutate(dependability = if_else(cv>1, 0, 1-cv))
 })
 
 dat_summary <- reactive({
   dat() %>%
-    select(Player, Team, Position, `Total Points`, `Mean Points`, 
-           `Total Projected Points`, `Mean Projected Points`, dependability) %>% 
-    unique() %>% 
-    ungroup() %>% 
-    arrange(desc(!!sym(input$point_type))) %>%
-    slice(1:n_players_selected()) %>% 
-    mutate(Player = reorder(Player, !!sym(input$point_type)))
+      select(Player, Team, Position, `Total Points`, `Mean Points`, 
+             `Total Projected Points`, `Mean Projected Points`, dependability) %>% 
+      unique() %>% 
+      ungroup() %>% 
+      dplyr::arrange(desc(!!sym(input$point_type))) %>%
+      slice(1:n_players_selected()) %>% 
+      mutate(Player = reorder(Player, !!sym(input$point_type)))
 })
 ```
 
@@ -165,23 +165,30 @@ Top Scorers  {data-height=800, data-width=800}
 
 ```{r}
 renderPlotly({
-p <- dat_summary() %>%
-    mutate(text=paste0(
-        Player,"\nPosition: ", Position, "\nTeam: ", Team, 
-        "\n", input$point_type, ": ", round(!!sym(input$point_type),2)
-    )) %>% 
-    ggplot(aes(x = Player, y = !!sym(input$point_type), fill=Team, text=text)) +
-    geom_bar(stat = "identity") +
-    scale_fill_manual(values = colors) +
-    coord_flip() +
-    labs(title = "",
-       x = "",
-       y = "Total Points") +
-    theme_light() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1), legend.position = "none") +
-    scale_y_continuous(labels = scales::comma)
-
-ggplotly(plot_theme(p), tooltip = c("text"))
+    y_breaks <- 2
+    if(
+      input$point_type %in% c("Total Points", "Total Projected Points") & 
+      max(dat_summary()$`Total Points`, na.rm = TRUE) > 30
+    ){
+        y_breaks <- 25
+    }
+    p <- dat_summary() %>%
+        mutate(text=paste0(
+            Player,"\nPosition: ", Position, "\nTeam: ", Team, 
+            "\n", input$point_type, ": ", round(!!sym(input$point_type),2)
+        )) %>% 
+        ggplot(aes(x = Player, y = !!sym(input$point_type), fill=Team, text=text)) +
+        geom_bar(stat = "identity") +
+        scale_fill_manual(values = colors) +
+        coord_flip() +
+        labs(title = "",
+           x = "",
+           y = "Total Points") +
+        theme_light() +
+        theme(axis.text.x = element_text(angle = 45, hjust = 1), legend.position = "none") +
+        scale_y_continuous(labels = scales::comma, breaks = get_breaks(y_breaks))
+    
+    ggplotly(plot_theme(p), tooltip = c("text"))
 })
 ```
 
@@ -219,6 +226,10 @@ renderPlotly({
              ungroup())
   
     y_nudge <- sd(data_dependable[[input$point_type]])/10
+    y_breaks <- 2
+    if(input$point_type %in% c("Total Points", "Total Projected Points")){
+        y_breaks <- 10
+    }
     
     p <- ggplot() +
         geom_point(
@@ -235,25 +246,106 @@ renderPlotly({
         geom_text(
             data = data_dependable, 
             aes(
-                x=dependability,#+0.07, 
-                y=!!sym(input$point_type),#-sd(!!sym(input$point_type))/10, 
+                x=dependability,
+                y=!!sym(input$point_type),
                 label=Player, 
                 color=Team, 
                 text=text
             ), 
             nudge_y = y_nudge,
             size=3.5,
-            face="bold"
         ) +
         labs(title = "",
             x = "Dependability",
             y = input$point_type) +
         theme_light() +
         scale_color_manual(values = colors) +
-        scale_x_continuous(breaks = seq(0, 1, 0.1), labels = scales::percent_format(), limits = c(0, 1)) +
+        scale_x_continuous(breaks = get_breaks(0.1), labels = scales::percent_format(), limits = c(0, 1)) +
+        scale_y_continuous(breaks = get_breaks(y_breaks)) +
         theme(legend.position = "none")
     ggplotly(plot_theme(p), tooltip = c("text"))
 })
 ```
 
+
+Players
+=====================================  
+
+Help {data-height=80, data-width=80}
+-----------------------------------------------------------------------
+```{r}
+pickerInput(
+    inputId = "player",
+    label = "Choose Player", 
+    choices = dat_s$Player %>% unique() %>% sort(),
+    selected = "Lamar Jackson",
+    options = pickerOptions(
+        container = "body", 
+        liveSearch = TRUE
+    ),
+)
+```
+
+Player {data-height=800, data-width=800}
+-----------------------------------------------------------------------
+
+### Player Points per Week
+```{r}
+renderPlotly({
+    player_data <- dat_s %>% 
+        filter(Player == input$player) %>% 
+        mutate(text=paste0(
+            "Week: ", Week, 
+            "\nFantasy Points: ", Fantasy.Points, 
+            "\nProjected Points: ", Projection,
+            "\nOpponent: ", Opponent
+        )) %>% 
+    gather(key = "key", value = "value", Fantasy.Points, Projection) %>% 
+    left_join(colors_df %>% select(short_name, color), by=join_by(Team==short_name))
+    player_color <- player_data %>% pull(color) %>% head(1) %>% rep(2)
+    player_team <- player_data %>% pull(Team) %>% head(1)
+    player_position <- player_data %>% pull(Position) %>% head(1)
+    
+    p <- player_data %>% 
+        ggplot() +
+        geom_col(aes(x = Week, y = value, fill=key, text=text, alpha=key), position="dodge") +
+        scale_fill_manual(values = player_color) +
+        scale_alpha_manual(values = c(1, 0.5)) +
+        scale_x_continuous(breaks = get_breaks(1)) +
+        scale_y_continuous(breaks = get_breaks(5), minor_breaks = get_breaks(1)) +
+        labs(
+            title = paste0(input$player, ", ", player_position, " at ", player_team),
+            x = "Week",
+            y = "Points"
+        ) +
+        theme_light() +
+        theme(legend.position = "none")
+    ggplotly(plot_theme(p), tooltip = c("text"))
+})
+
+```
+
+
+
+Data
+=====================================  
+
+Data {data-height=800, data-width=800}
+-----------------------------------------------------------------------
+
+```{r}
+
+renderDataTable({
+    dat <- dat_summary() %>% 
+        select(Player, Team, Position, `Total Points`, `Mean Points`, 
+               `Total Projected Points`, `Mean Projected Points`, dependability) %>% 
+        mutate(dependability = round(dependability, 2),
+               `Total Points` = round(`Total Points`, 2),
+               `Mean Points` = round(`Mean Points`, 2),
+               `Total Projected Points` = round(`Total Projected Points`, 2),
+               `Mean Projected Points` = round(`Mean Projected Points`, 2)) %>% 
+        create_dt()
+})
+
+```
 
