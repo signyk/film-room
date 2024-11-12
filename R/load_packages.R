@@ -6,4 +6,5 @@ load_packages <- function(){
     require(scales)
     require(jsonlite)
     require(plotly)
+    require(DT)
 }

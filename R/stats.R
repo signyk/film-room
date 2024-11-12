@@ -1,7 +1,7 @@
 library(tidyverse)
 source("R/colors.R")
 
-data_raw <- read.csv("~/Projects/FantasyNFL/data/weekly_fantasy_points.csv")
+data_raw <- read.csv("data/weekly_fantasy_points.csv")
 
 data <- data_raw %>%
   mutate(Fantasy.Points = if_else(Projection==0.0 & Fantasy.Points==0.0, NA, Fantasy.Points))
