@@ -1,0 +1,259 @@
+---
+title: '|'
+output:
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: scroll
+    logo: logo.png
+    theme:
+      version: 4
+      bg: '#011224'
+      fg: '#ffffff'
+      primary: '#013369'
+      navbar-bg: '#013369'
+      base_font:
+        google: Montserrat
+      heading_font:
+        google: Montserrat
+runtime: shiny
+---
+
+```{r global}
+source("R/load_packages.R")
+load_packages()
+
+source("R/colors.R")
+source("R/teams.R")
+source("R/plot_theme.R")
+
+data_raw <- read.csv("data/weekly_fantasy_points.csv")
+dat_s <- data_raw %>%
+  mutate(Fantasy.Points = if_else(Projection==0.0 & Fantasy.Points==0.0, NA, Fantasy.Points))
+```
+
+Sidebar {.sidebar}
+=====================================
+```{r sidebar}
+CURRENT_WEEK <- 11
+all_weeks <- unique(dat_s$Week)
+past_weeks <- all_weeks[all_weeks < CURRENT_WEEK]
+future_weeks <- all_weeks[all_weeks >= CURRENT_WEEK]
+
+renderText({
+  paste("Current Week:", CURRENT_WEEK)
+})
+br()
+
+pickerInput(
+    inputId = "week", 
+    label = "Week", 
+    choices = list("Past weeks" = past_weeks, "Future weeks" = future_weeks),
+    selected=past_weeks, 
+    multiple = TRUE, 
+    options = pickerOptions(
+        actionsBox = TRUE, 
+        size = 10, 
+        selectedTextFormat = "count > 3", 
+        countSelectedText = "{0} weeks selected"
+    )
+)
+
+pickerInput(
+    inputId = "position", 
+    label = "Position", 
+    choices=c(unique(dat_s$Position)), 
+    selected="QB", 
+    multiple=TRUE,
+    options = pickerOptions(actionsBox = TRUE, size = 10)
+)
+
+pickerInput(
+    inputId = "team", 
+    label = "Team", 
+    choices=nfl_teams_by_division,
+    selected=c(unique(dat_s$Team)), 
+    multiple = TRUE, 
+    options = pickerOptions(
+        actionsBox = TRUE, 
+        size = 10, 
+        selectedTextFormat = "count > 3", 
+        countSelectedText = "{0} teams selected"
+    )
+)
+
+pickerInput(
+    inputId = "point_type",
+    label = "Point Type", 
+    choices = list(
+        "Fantasy Points" = c("Total Points", "Mean Points"),
+        "Projected Points" = c("Total Projected Points", "Mean Projected Points")
+    ),
+    options = pickerOptions(container = "body"), 
+    selected = "Total Points",
+)
+
+numericInput(
+    inputId = "n_players", 
+    label = "Number of Players to show", 
+    value = 20, 
+    min = 1, 
+    max = 40
+)
+
+selected_weeks <- reactive({
+  str_extract_all(input$week, "\\d+")
+})
+
+n_players_selected <- reactive({
+  if(is.na(input$n_players)){
+      return(1)
+  }
+  if(input$n_players > 40){
+      showNotification("The number of players must be between 1 and 40", type = "warning")
+      return(40)
+  }
+  if(input$n_players < 1){
+      showNotification("The number of players must be between 1 and 40", type = "warning")
+      return(1)
+  }
+  return(input$n_players)
+})
+
+```
+
+```{r data-processing}
+dat <- reactive({
+  dat_s %>%
+    filter(Position %in% input$position) %>%
+    filter(Team %in% input$team) %>%
+    filter(Week %in% selected_weeks()) %>% 
+    group_by(Player, Team) %>% 
+    mutate("Total Points" = sum(Fantasy.Points, na.rm = TRUE),
+           "Mean Points" = mean(Fantasy.Points, na.rm = TRUE),
+           "Total Projected Points" = sum(Projection, na.rm = TRUE),
+           "Mean Projected Points" = mean(Projection, na.rm = TRUE),
+           projected_rest_of_season = sum(ifelse(Week >= CURRENT_WEEK, Projection, 0), na.rm = TRUE),
+           sd_fantasy_points = sd(Fantasy.Points, na.rm = TRUE),
+           sd_projection = sd(Projection, na.rm = TRUE),
+           mean_fantasy_points = mean(Fantasy.Points, na.rm = TRUE),
+           mean_projection = mean(Projection, na.rm = TRUE)) %>% 
+    ungroup() %>% 
+    mutate(cv = sd_fantasy_points / mean_fantasy_points) %>% 
+    mutate(dependability = if_else(cv>1, 0, 1-cv))
+})
+
+dat_summary <- reactive({
+  dat() %>%
+    select(Player, Team, Position, `Total Points`, `Mean Points`, 
+           `Total Projected Points`, `Mean Projected Points`, dependability) %>% 
+    unique() %>% 
+    ungroup() %>% 
+    arrange(desc(!!sym(input$point_type))) %>%
+    slice(1:n_players_selected()) %>% 
+    mutate(Player = reorder(Player, !!sym(input$point_type)))
+})
+```
+
+
+Top Scorers
+=====================================  
+
+Top Scorers  {data-height=800, data-width=800}
+-----------------------------------------------------------------------
+
+### Top Fantasy Football Players
+
+```{r}
+renderPlotly({
+p <- dat_summary() %>%
+    mutate(text=paste0(
+        Player,"\nPosition: ", Position, "\nTeam: ", Team, 
+        "\n", input$point_type, ": ", round(!!sym(input$point_type),2)
+    )) %>% 
+    ggplot(aes(x = Player, y = !!sym(input$point_type), fill=Team, text=text)) +
+    geom_bar(stat = "identity") +
+    scale_fill_manual(values = colors) +
+    coord_flip() +
+    labs(title = "",
+       x = "",
+       y = "Total Points") +
+    theme_light() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1), legend.position = "none") +
+    scale_y_continuous(labels = scales::comma)
+
+ggplotly(plot_theme(p), tooltip = c("text"))
+})
+```
+
+Dependability
+=====================================  
+
+Help {data-height=35, data-width=35}
+-----------------------------------------------------------------------
+```{r}
+actionBttn(inputId = "help", style="gradient", icon = icon("question"))
+
+observeEvent(input$help, {
+  sendSweetAlert(session=session, title="Dependability", text="Dependability is a measure of how consistent a player is in scoring fantasy points.\nIt is calculated as 100%-sd(score)/mean(score) using the score from the chosen weeks.\n100% dependability means the player always has the same score while 50% dependability means the player's score varies by half of the mean score.", type="info")
+})
+```
+
+Dependability {data-height=800, data-width=800}
+-----------------------------------------------------------------------
+
+### Dependability of Fantasy Football Players
+```{r}
+renderPlotly({
+    data_dependable <- dat_summary() %>% 
+        mutate(text=paste0(
+            Player,"\nPosition: ", Position, "\nTeam: ", Team, 
+            "\n", input$point_type, ": ", round(!!sym(input$point_type),2), 
+            "\nDependability: ", round(dependability, 2)*100, "%"
+        ))
+    
+    dashed_line <- data_dependable %>% 
+        summarise(dependability = 0, points = min(!!sym(input$point_type))) %>%
+        ungroup() %>% 
+        rbind(data_dependable %>% 
+             summarise(dependability = 1, points = max(!!sym(input$point_type))) %>%
+             ungroup())
+  
+    y_nudge <- sd(data_dependable[[input$point_type]])/10
+    
+    p <- ggplot() +
+        geom_point(
+            data = data_dependable, 
+            aes(x=dependability, y=!!sym(input$point_type), color=Team, text=text),
+            size=3
+        ) +
+        geom_line(
+            data=dashed_line, 
+            linetype="dashed", 
+            aes(x=dependability, y=points), 
+            color="#ffffff",
+        ) +
+        geom_text(
+            data = data_dependable, 
+            aes(
+                x=dependability,#+0.07, 
+                y=!!sym(input$point_type),#-sd(!!sym(input$point_type))/10, 
+                label=Player, 
+                color=Team, 
+                text=text
+            ), 
+            nudge_y = y_nudge,
+            size=3.5,
+            face="bold"
+        ) +
+        labs(title = "",
+            x = "Dependability",
+            y = input$point_type) +
+        theme_light() +
+        scale_color_manual(values = colors) +
+        scale_x_continuous(breaks = seq(0, 1, 0.1), labels = scales::percent_format(), limits = c(0, 1)) +
+        theme(legend.position = "none")
+    ggplotly(plot_theme(p), tooltip = c("text"))
+})
+```
+
+
