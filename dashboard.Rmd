@@ -34,7 +34,7 @@ dat_s <- data_raw %>%
 Sidebar {.sidebar}
 =====================================
 ```{r sidebar}
-CURRENT_WEEK <- 11
+CURRENT_WEEK <- 12
 all_weeks <- unique(dat_s$Week)
 past_weeks <- all_weeks[all_weeks < CURRENT_WEEK]
 future_weeks <- all_weeks[all_weeks >= CURRENT_WEEK]
@@ -89,7 +89,7 @@ pickerInput(
         "Projected Points" = c("Total Projected Points", "Average Projected Points")
     ),
     options = pickerOptions(container = "body"), 
-    selected = "Total Points",
+    selected = "Average Points",
 )
 
 numericInput(
@@ -214,10 +214,10 @@ renderPlotly({
         ))
     
     dashed_line <- data_dependable %>% 
-        summarise(dependability = 0, points = min(!!sym(input$point_type))) %>%
+        summarise(dependability = 0, points = max(!!sym(input$point_type))) %>%
         ungroup() %>% 
         rbind(data_dependable %>% 
-             summarise(dependability = 1, points = max(!!sym(input$point_type))) %>%
+             summarise(dependability = 1, points = min(!!sym(input$point_type))) %>%
              ungroup())
   
     y_breaks <- data_dependable %>% pull(!!sym(input$point_type)) %>% sd() %>% smart_round() %>% max(., 1)
