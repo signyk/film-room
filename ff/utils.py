@@ -1,7 +1,34 @@
+import datetime as dt
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ff.models import Position, WeeklyStats
+
+
+def get_current_nfl_week(
+    start_date: dt.date = dt.date(2024, 9, 2), today_date: dt.date = dt.date.today()
+) -> int:
+    """Determine the current NFL week based on the start date and today's date.
+
+    Parameters
+    ----------
+    start_date : dt.date, optional
+        The start date of the NFL season, by default dt.date(2024, 9, 2)
+    today_date : dt.date, optional
+        The current date, by default dt.date.today()
+
+    Returns
+    -------
+    int
+        The current NFL week
+    """
+    # Calculate the difference in days between today and the start date
+    days_difference = (today_date - start_date).days
+
+    # Calculate the current week (1-based index, each week is 7 days)
+    current_week = days_difference // 7 + 1
+
+    return max(current_week, 1)  # Ensure week is at least 1
 
 
 def get_allowed_points_points(allowed_points: int) -> int:

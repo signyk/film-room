@@ -1,7 +1,8 @@
 import json
 import os
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
+from ff.logger import Logger
 from ff.models import Game, Player, WeeklyProjection, WeeklyStats
 from ff.service.client import get_players, get_weekly_projections, get_weekly_stats
 
@@ -61,16 +62,26 @@ def load_weekly_projections(
 
 
 def load_all_stats(
-    current_week: int, force_update: bool = False
+    current_week: int, force_update: bool = False, logger: Optional[Logger] = None
 ) -> Tuple[Dict[int, Dict[str, WeeklyStats]], Dict[int, Dict[str, WeeklyProjection]]]:
     all_stats: Dict[int, Dict[str, WeeklyStats]] = {}
     for week in range(1, current_week):
-        weekly_stats = load_weekly_stats(week, force_update)
+        try:
+            weekly_stats = load_weekly_stats(week, force_update)
+        except Exception as e:
+            if logger:
+                logger.error(f"Error loading stats for week {week}: {e}")
+            raise
         all_stats[week] = weekly_stats
 
     all_projections: Dict[int, Dict[str, WeeklyProjection]] = {}
     for week in range(1, 19):
-        weekly_projections = load_weekly_projections(week, force_update)
+        try:
+            weekly_projections = load_weekly_projections(week, force_update)
+        except Exception as e:
+            if logger:
+                logger.error(f"Error loading projections for week {week}: {e}")
+            raise
         all_projections[week] = weekly_projections
 
     return all_stats, all_projections

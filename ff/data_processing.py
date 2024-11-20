@@ -67,28 +67,77 @@ def write_table(
         player.is_relevant() for player in relevant_players
     ), "All players must be relevant"
 
-    data = DataFrame(
-        {
-            "Player": player.name,
-            "Position": player.position,
-            "Team": player.team.short,  # type: ignore
-            "Opponent": schedule_dict.get((week, player.team.short), None),  # type: ignore
-            "Week": week,
-            "Fantasy Points": (
-                all_stats[week][player.player_id].fantasy_points(player.position)  # type: ignore
-                if week in all_stats and player.player_id in all_stats[week]
-                else None
-            ),
-            "Projection": (
-                all_projections[week][player.player_id].projected_points
-                if week in all_projections and player.player_id in all_projections[week]
-                else None
-            ),
-        }
-        for week in range(1, 18)
-        for player in relevant_players
-        if player.is_relevant()
-    )
+    data = []
+    for week in range(1, 18):
+        for player in relevant_players:
+            stats = all_stats.get(week, {}).get(player.player_id, None)
+            projection = all_projections.get(week, {}).get(player.player_id, None)
+            data.append(
+                {
+                    "Player": player.name,
+                    "Position": player.position,
+                    "Team": player.team.short,  # type: ignore
+                    "Opponent": schedule_dict.get((week, player.team.short), None),  # type: ignore
+                    "Week": week,
+                    "Fantasy Points": (
+                        stats.fantasy_points(player.position)  # type: ignore
+                        if stats is not None
+                        else None
+                    ),
+                    "Projection": (
+                        projection.projected_points if projection is not None else None
+                    ),
+                    "FGA": (stats.fg_attempts if stats is not None else None),
+                    "FGM": (stats.fg_made if stats is not None else None),
+                    "FGM 0-19": (stats.fgm_0_19 if stats is not None else None),
+                    "FGM 20-29": (stats.fgm_20_29 if stats is not None else None),
+                    "FGM 30-39": (stats.fgm_30_39 if stats is not None else None),
+                    "FGM 40-49": (stats.fgm_40_49 if stats is not None else None),
+                    "FGM 50+": (stats.fgm_50_plus if stats is not None else None),
+                    "XPA": (stats.xp_attempts if stats is not None else None),
+                    "XPM": (stats.xp_made if stats is not None else None),
+                    "Passing ATT": (stats.pass_att if stats is not None else None),
+                    "Passing CMP": (stats.pass_cmp if stats is not None else None),
+                    "Passing YDS": (stats.pass_yds if stats is not None else None),
+                    "Passing TD": (stats.pass_tds if stats is not None else None),
+                    "Passing 2-PT": (stats.pass_2pt if stats is not None else None),
+                    "Passing INT": (
+                        stats.interceptions_thrown if stats is not None else None
+                    ),
+                    "Passing Sack": (stats.sacks if stats is not None else None),
+                    "Rushing ATT": (stats.rush_att if stats is not None else None),
+                    "Rushing YDS": (stats.rush_yds if stats is not None else None),
+                    "Rushing TD": (stats.rush_tds if stats is not None else None),
+                    "Rushing 2-PT": (stats.rush_2pt if stats is not None else None),
+                    "Receiving TGT": (stats.rec_tgt if stats is not None else None),
+                    "Receptions": (stats.rec if stats is not None else None),
+                    "Receiving YDS": (stats.rec_yds if stats is not None else None),
+                    "Receiving TD": (stats.rec_tds if stats is not None else None),
+                    "Receiving 2-PT": (stats.rec_2pt if stats is not None else None),
+                    "Fumbles": (stats.fumbles if stats is not None else None),
+                    "Fumbles Lost": (stats.fumbles_lost if stats is not None else None),
+                    "Fumble Recovery TD": (
+                        stats.fumble_recovery_tds if stats is not None else None
+                    ),
+                    "Sacks": (stats.def_sacks if stats is not None else None),
+                    "INT": (stats.def_interceptions if stats is not None else None),
+                    "Forced Fumbles": (
+                        stats.def_force_fumbles if stats is not None else None
+                    ),
+                    "Fumble Recoveries": (
+                        stats.def_fumble_recoveries if stats is not None else None
+                    ),
+                    "DEF TD": (stats.def_tds if stats is not None else None),
+                    "RET TD": (stats.return_tds if stats is not None else None),
+                    "Blocked Kicks": (
+                        stats.blocked_kicks if stats is not None else None
+                    ),
+                    "YDS Allowed": (stats.yds_allowed if stats is not None else None),
+                    "PTS Allowed": (stats.pts_allowed if stats is not None else None),
+                    "Safeties": (stats.safeties if stats is not None else None),
+                }
+            )
+    dataframe = DataFrame(data)
 
-    data.to_csv(path, index=False)
+    dataframe.to_csv(path, index=False)
     return data
