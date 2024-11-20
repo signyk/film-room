@@ -76,6 +76,9 @@ def write_table(
                 {
                     "Player": player.name,
                     "Position": player.position,
+                    "Injury Status": (
+                        player.injury_status.name if player.injury_status else None
+                    ),
                     "Team": player.team.short,  # type: ignore
                     "Opponent": schedule_dict.get((week, player.team.short), None),  # type: ignore
                     "Week": week,
