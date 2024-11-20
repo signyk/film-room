@@ -278,6 +278,28 @@ pickerInput(
 )
 ```
 
+Header {data-height=80, data-width=800}
+-----------------------------------------------------------------------
+```{r}
+renderUI({
+    player_color <- player_color() %>% rep(2)
+    player_team <- player_dat_filtered() %>% pull(Team) %>% head(1)
+    player_position <- player_dat_filtered() %>% pull(Position) %>% head(1)
+    player_injury <- player_dat_filtered() %>% pull(Injury.Status) %>% head(1)
+    player_injury_str <- ifelse(player_injury != "", paste0(" (", player_injury, ")"), "")
+    injury_color <- ifelse(player_injury %in% c("IR", "OUT"), "#E45756", "#FFC857")
+    
+    player_info <- paste0(input$player, ", ", player_position, " at ", player_team)
+    HTML(paste0(
+        "<h2>", 
+        player_info, 
+        "<span style='color:", injury_color, ";'>", player_injury_str, "</span>",
+        "</h2>"
+        )
+    )
+})
+```
+
 Values {data-height=160, data-width=160}
 -----------------------------------------------------------------------
 
@@ -409,6 +431,7 @@ renderGauge({
 })
 ```
 
+
 Player {data-height=800, data-width=800}
 -----------------------------------------------------------------------
 
@@ -416,14 +439,6 @@ Player {data-height=800, data-width=800}
 ```{r}
 renderPlotly({
     player_color <- player_color() %>% rep(2)
-    player_team <- player_dat_filtered() %>% pull(Team) %>% head(1)
-    player_position <- player_dat_filtered() %>% pull(Position) %>% head(1)
-    
-    plot_title <- paste0(input$player, ", ", player_position, " at ", player_team)
-    if(nrow(player_dat_filtered()) == 0){
-        plot_title <- ""
-    }
-    
     
     p <- player_dat_filtered() %>% 
         ggplot() +
@@ -433,7 +448,6 @@ renderPlotly({
         scale_x_continuous(breaks = get_breaks(1)) +
         scale_y_continuous(breaks = get_breaks(5), minor_breaks = get_breaks(1)) +
         labs(
-            title = plot_title,
             x = "Week",
             y = "Points"
         ) +
@@ -509,6 +523,9 @@ renderPlotly({
     ggplotly(plot_theme(p), tooltip = c("text"))
 })
 ```
+
+
+
 
 
 Data
