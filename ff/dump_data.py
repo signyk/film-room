@@ -9,7 +9,7 @@ current_week = get_current_nfl_week()
 logger.info(f"Current NFL week: {current_week}")
 
 try:
-    all_players = load_players(force_update=False)
+    all_players = load_players(force_update=True)
     logger.info("Loaded all players successfully.")
 except Exception as e:
     logger.error(f"Error loading players: {e}")
@@ -17,7 +17,7 @@ except Exception as e:
 
 relevant_players = get_relevant_players(all_players)
 all_stats, all_projections = load_all_stats(
-    current_week, force_update=False, logger=logger
+    current_week, force_update=True, logger=logger
 )
 schedule = load_schedule()
 
