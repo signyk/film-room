@@ -15,8 +15,8 @@ plot_theme <- function(p){
             axis.text = element_text(family = "Montserrat", size = 12, color = "#ffffff"),
             legend.title = element_text(size=14, family = "Montserrat", face = "bold", color="#ffffff"),
             legend.text = element_text(size = 10, family = "Montserrat", color = "#ffffff"),
-            legend.background = element_rect(fill = "#011224", color = "#011224"),
-            legend.frame = element_rect(fill = "#011224", color = "#011224")
+            legend.background = element_rect(fill = "#011224", color = "#011224")
+            #legend.frame = element_rect(fill = "#011224", color = "#011224")
         )
     )
 }
@@ -72,10 +72,38 @@ get_breaks <- function(step) {
     }
 }
 
+
+
+stat_variables <- function(position) {
+    if (position == "QB"){
+        return(c("Passing.ATT", "Passing.CMP", "Passing.YDS", "Passing.TD", "Passing.2.PT", "Passing.INT", "Passing.Sack",
+                 "Rushing.ATT", "Rushing.YDS", "Rushing.TD", "Rushing.2.PT", 
+                 "Receiving.TGT", "Receptions", "Receiving.YDS", "Receiving.TD", "Receiving.2.PT", 
+                 "Fumbles", "Fumbles.Lost", "Fumble.Recovery.TD"))
+    } else if (position == "RB"){
+        return(c("Rushing.ATT", "Rushing.YDS", "Rushing.TD", "Rushing.2.PT", 
+                 "Receiving.TGT", "Receptions", "Receiving.YDS", "Receiving.TD", "Receiving.2.PT", 
+                 "Fumbles", "Fumbles.Lost", "Fumble.Recovery.TD",
+                 "Passing.ATT", "Passing.CMP", "Passing.YDS", "Passing.TD", "Passing.2.PT", "Passing.INT", "Passing.Sack"))
+    } else if (position %in% c("WR", "TE")) {
+        return(c("Receiving.TGT", "Receptions", "Receiving.YDS", "Receiving.TD", "Receiving.2.PT", 
+                 "Rushing.ATT", "Rushing.YDS", "Rushing.TD", "Rushing.2.PT", 
+                 "Fumbles", "Fumbles.Lost", "Fumble.Recovery.TD",
+                 "Passing.ATT", "Passing.CMP", "Passing.YDS", "Passing.TD", "Passing.2.PT", "Passing.INT", "Passing.Sack"))
+    } else if (position == "K") {
+        return(c("FGA", "FGM", "FGM.0.19", "FGM.20.29", "FGM.30.39", "FGM.40.49", "FGM.50.", "XPA", "XPM"))
+    } else if (position == "DEF") {
+        return(c("Sacks", "INT", "Forced.Fumbles", "Fumble.Recoveries", "DEF.TD", "RET.TD", "Blocked.Kicks", "YDS.Allowed", "PTS.Allowed", "Safeties"))
+    } else {
+        return(c())
+    }
+}
+
 create_dt <- function(data){
     DT::datatable(
         data,
         #extensions = 'Buttons',
+        rownames = FALSE,
         options = list(
             dom = 'Blfrtip',
             #buttons = c('csv', 'excel'),
@@ -83,4 +111,21 @@ create_dt <- function(data){
             c("All",10,25,50)
         )
     ))
+}
+
+get_current_nfl_week <- function(start_date = as.Date("2024-09-02"), today_date = Sys.Date()) {
+    #' Determine the current NFL week based on the start date and today's date.
+    #'
+    #' @param start_date The start date of the NFL season (default: "2024-09-02").
+    #' @param today_date The current date (default: today).
+    #' @return The current NFL week as an integer.
+    
+    # Calculate the difference in days between today and the start date
+    days_difference <- as.numeric(today_date - start_date)
+    
+    # Calculate the current week (1-based index, each week is 7 days)
+    current_week <- floor(days_difference / 7) + 1
+    
+    # Ensure week is at least 1
+    return(max(current_week, 1))
 }
