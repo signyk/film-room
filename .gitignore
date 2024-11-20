@@ -4,3 +4,6 @@ __pycache__/
 .Rhistory
 .DS_Store
 rsconnect/
+ff.log
+update_dashboard.R
+renv.lock
