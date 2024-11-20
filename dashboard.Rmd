@@ -34,7 +34,7 @@ dat_s <- data_raw %>%
 Sidebar {.sidebar}
 =====================================
 ```{r sidebar}
-CURRENT_WEEK <- 12
+CURRENT_WEEK <- get_current_nfl_week()
 all_weeks <- unique(dat_s$Week)
 past_weeks <- all_weeks[all_weeks < CURRENT_WEEK]
 future_weeks <- all_weeks[all_weeks >= CURRENT_WEEK]
@@ -440,6 +440,22 @@ renderPlotly({
         theme_light() +
         theme(legend.position = "none")
     ggplotly(plot_theme(p), tooltip = c("text"))
+})
+```
+
+PlayerData {data-height=800, data-width=800}
+-----------------------------------------------------------------------
+
+### Player Statistics
+```{r}
+renderDataTable({
+    player_position <- player_dat_filtered() %>% pull(Position) %>% head(1)
+    stat_cols <- stat_variables(player_position)
+    player_dat() %>% 
+        filter(Player == input$player) %>%
+        select(Week, Opponent, all_of(stat_cols)) %>%
+        rename_with(~ gsub("\\.", " ", .)) %>% 
+        create_dt()
 })
 ```
 
