@@ -1,10 +1,10 @@
 ---
-title: '|'
+title: 'Fantabolti'
 output:
   flexdashboard::flex_dashboard:
     orientation: rows
     vertical_layout: scroll
-    logo: logo.png
+    logo: fantabolti.png
     theme:
       version: 4
       bg: '#011224'
@@ -26,14 +26,22 @@ source("R/colors.R")
 source("R/teams.R")
 source("R/utils.R")
 
-data_raw <- read.csv("data/weekly_fantasy_points.csv")
-dat_s <- data_raw %>%
+data_raw24 <- read.csv("data/2024/weekly_fantasy_points.csv")
+data_raw25 <- read.csv("data/2025/weekly_fantasy_points.csv")
+dat_s24 <- data_raw24 %>%
   mutate(Fantasy.Points = if_else(Projection==0.0 & Fantasy.Points==0.0, NA, Fantasy.Points))
+dat_s25 <- data_raw25 %>%
+  mutate(Fantasy.Points = if_else(Projection==0.0 & Fantasy.Points==0.0, NA, Fantasy.Points))
+
+dat_s <- dat_s24 %>% 
+    mutate(Year=2024) %>% 
+    bind_rows(dat_s25 %>% mutate(Year=2025))
 ```
 
 Sidebar {.sidebar}
 =====================================
 ```{r sidebar}
+CURRENT_YEAR <- 2025
 CURRENT_WEEK <- get_current_nfl_week()
 all_weeks <- unique(dat_s$Week)
 past_weeks <- all_weeks[all_weeks < CURRENT_WEEK]
@@ -43,6 +51,18 @@ renderText({
   paste("Current Week:", CURRENT_WEEK)
 })
 br()
+
+pickerInput(
+    inputId = "year",
+    label = "Year",
+    choices = c(2024, 2025),
+    selected = CURRENT_YEAR,
+    multiple = FALSE,
+    options = pickerOptions(
+        actionsBox = FALSE, 
+        size = 10, 
+    )
+)
 
 pickerInput(
     inputId = "week", 
@@ -97,7 +117,7 @@ numericInput(
     label = "Number of Players to show", 
     value = 20, 
     min = 1, 
-    max = 40
+    max = 50
 )
 
 selected_weeks <- reactive({
@@ -108,12 +128,12 @@ n_players_selected <- reactive({
   if(is.na(input$n_players)){
       return(1)
   }
-  if(input$n_players > 40){
-      showNotification("The number of players must be between 1 and 40", type = "warning")
+  if(input$n_players > 50){
+      showNotification("The number of players must be between 1 and 50", type = "warning")
       return(40)
   }
   if(input$n_players < 1){
-      showNotification("The number of players must be between 1 and 40", type = "warning")
+      showNotification("The number of players must be between 1 and 50", type = "warning")
       return(1)
   }
   return(input$n_players)
@@ -123,23 +143,24 @@ n_players_selected <- reactive({
 
 ```{r data-processing}
 dat <- reactive({
-  dat_s %>%
-    filter(Position %in% input$position) %>%
-    filter(Team %in% input$team) %>%
-    filter(Week %in% selected_weeks()) %>% 
-    group_by(Player, Team) %>% 
-    mutate("Total Points" = sum(Fantasy.Points, na.rm = TRUE),
-           "Average Points" = mean(Fantasy.Points, na.rm = TRUE),
-           "Total Projected Points" = sum(Projection, na.rm = TRUE),
-           "Average Projected Points" = mean(Projection, na.rm = TRUE),
-           projected_rest_of_season = sum(ifelse(Week >= CURRENT_WEEK, Projection, 0), na.rm = TRUE),
-           sd_fantasy_points = sd(Fantasy.Points, na.rm = TRUE),
-           sd_projection = sd(Projection, na.rm = TRUE)) %>% 
-    ungroup() %>% 
-    mutate(cv = sd_fantasy_points / `Average Points`) %>% 
-    mutate(cv = if_else(is.infinite(cv) | is.na(cv), 0, cv)) %>%
-    mutate(`Average Points` = if_else(is.infinite(`Average Points`) | is.na(`Average Points`), 0, `Average Points`)) %>%
-    mutate(dependability = if_else(cv>1, 0, 1-cv))
+    dat_s %>%
+        filter(Year == input$year) %>%
+        filter(Position %in% input$position) %>%
+        filter(Team %in% input$team) %>%
+        filter(Week %in% selected_weeks()) %>% 
+        group_by(Player, Team) %>% 
+        mutate("Total Points" = sum(Fantasy.Points, na.rm = TRUE),
+               "Average Points" = mean(Fantasy.Points, na.rm = TRUE),
+               "Total Projected Points" = sum(Projection, na.rm = TRUE),
+               "Average Projected Points" = mean(Projection, na.rm = TRUE),
+               projected_rest_of_season = sum(ifelse(Week >= CURRENT_WEEK, Projection, 0), na.rm = TRUE),
+               sd_fantasy_points = sd(Fantasy.Points, na.rm = TRUE),
+               sd_projection = sd(Projection, na.rm = TRUE)) %>% 
+        ungroup() %>% 
+        mutate(cv = sd_fantasy_points / `Average Points`) %>% 
+        mutate(cv = if_else(is.infinite(cv) | is.na(cv), 0, cv)) %>%
+        mutate(`Average Points` = if_else(is.infinite(`Average Points`) | is.na(`Average Points`), 0, `Average Points`)) %>%
+        mutate(dependability = if_else(cv>1, 0, 1-cv))
 })
 
 dat_summary <- reactive({
@@ -306,6 +327,7 @@ Values {data-height=160, data-width=160}
 ```{r}
 player_dat <- reactive({
     return_dat <- dat_s %>% 
+        filter(Year == input$year) %>%
         filter(Opponent %in% input$team) %>%
         filter(Week %in% selected_weeks()) %>% 
         group_by(Player, Position) %>% 
@@ -489,7 +511,7 @@ renderPlotly({
             weekly_total_points = sum(Fantasy.Points, na.rm = TRUE),
             weekly_total_projected_points = sum(Projection, na.rm = TRUE),
         ) %>% 
-        mutate(weekly_total_points = if_else(Week>= CURRENT_WEEK, NA, weekly_total_points)) %>%
+        mutate(weekly_total_points = if_else(Year < CURRENT_YEAR, weekly_total_points, if_else(Week>= CURRENT_WEEK, NA, weekly_total_points))) %>%
         ungroup() %>%
         group_by(Opponent, Position) %>% 
         summarise(
