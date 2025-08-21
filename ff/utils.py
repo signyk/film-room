@@ -6,7 +6,7 @@ if TYPE_CHECKING:
 
 
 def get_current_nfl_week(
-    start_date: dt.date = dt.date(2024, 9, 3), today_date: dt.date = dt.date.today()
+    start_date: dt.date = dt.date(2025, 9, 4), today_date: dt.date = dt.date.today()
 ) -> int:
     """Determine the current NFL week based on the start date and today's date.
 
@@ -61,16 +61,20 @@ def get_fantasy_points(stats: "WeeklyStats", position: "Position") -> float:
             )
             * 6
             + stats.rec * 1
-            + stats.interceptions_thrown * -2
+            + stats.interceptions_thrown * -1
             + stats.fumbles_lost * -2
             + (stats.pass_2pt + stats.rush_2pt + stats.rec_2pt) * 2
         )
 
     elif position == "K":
         points = (
-            (stats.fgm_0_19 + stats.fgm_20_29 + stats.fgm_30_39 + stats.fgm_40_49) * 3
-            + stats.fgm_50_plus * 5
+            (stats.fgm_0_19 + stats.fgm_20_29 + stats.fgm_30_39) * 3
+            + stats.fgm_40_49 * 4
+            + stats.fgm_50_59 * 5
+            + stats.fgm_60_plus * 6
             + stats.xp_made
+            - (stats.xp_attempts - stats.xp_made)
+            - (stats.fg_attempts - stats.fg_made)
         )
 
     elif position == "DEF":
@@ -78,9 +82,11 @@ def get_fantasy_points(stats: "WeeklyStats", position: "Position") -> float:
             stats.def_sacks * 1
             + stats.def_interceptions * 2
             + stats.def_fumble_recoveries * 2
+            + stats.def_force_fumbles * 1
             + stats.safeties * 2
             + stats.def_tds * 6
             + stats.return_tds * 6
+            + stats.blocked_kicks * 2
             + get_allowed_points_points(stats.pts_allowed)
         )
     else:
