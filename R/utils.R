@@ -113,7 +113,7 @@ create_dt <- function(data){
     ))
 }
 
-get_current_nfl_week <- function(start_date = as.Date("2024-09-03"), today_date = Sys.Date()) {
+get_current_nfl_week <- function(start_date = as.Date("2025-09-04"), today_date = Sys.Date()) {
     #' Determine the current NFL week based on the start date and today's date.
     #'
     #' @param start_date The start date of the NFL season (default: "2024-09-03").
