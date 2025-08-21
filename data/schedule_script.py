@@ -1,5 +1,7 @@
 import json
 
+year = 2025
+
 
 # Define the Game class for structure
 class Game:
@@ -17,7 +19,7 @@ class Game:
 
 
 # The input data (as a large string or from a file)
-with open("data/schedule_raw.txt") as file:
+with open(f"data/{year}/schedule_raw.txt") as file:
     data = file.read()
 
 # Splitting the data into lines and skipping the first line (header)
@@ -47,7 +49,7 @@ for line in lines:
 json_data = json.dumps(games, indent=4)
 
 # Write the JSON data to a file
-with open("data/schedule.json", "w") as file:
+with open(f"data/{year}/schedule.json", "w") as file:
     file.write(json_data)
 
 print("JSON file has been created successfully.")
