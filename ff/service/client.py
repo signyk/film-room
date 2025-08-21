@@ -26,19 +26,19 @@ def get_players():
     return response
 
 
-def get_weekly_stats(week: int):
-    url = f"{config.stats_base_url}regular/2024/{week}"
+def get_weekly_stats(week: int, year: int):
+    url = f"{config.stats_base_url}regular/{year}/{week}"
     response = get(url)
-    with open(f"data/stats/week{week}.json", "w") as f:
+    with open(f"data/{year}/stats/week{week}.json", "w") as f:
         json.dump(response, f)
 
     return response
 
 
-def get_weekly_projections(week: int):
-    url = f"{config.projections_base_url}regular/2024/{week}"
+def get_weekly_projections(week: int, year: int):
+    url = f"{config.projections_base_url}regular/{year}/{week}"
     response = get(url)
-    with open(f"data/projections/week{week}.json", "w") as f:
+    with open(f"data/{year}/projections/week{week}.json", "w") as f:
         json.dump(response, f)
 
     return response

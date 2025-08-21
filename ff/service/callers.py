@@ -23,13 +23,15 @@ def load_players(force_update: bool = False) -> List[Player]:
     return players
 
 
-def load_weekly_stats(week: int, force_update: bool = False) -> Dict[str, WeeklyStats]:
-    file_path = f"data/stats/week{week}.json"
+def load_weekly_stats(
+    week: int, year: int, force_update: bool = False
+) -> Dict[str, WeeklyStats]:
+    file_path = f"data/{year}/stats/week{week}.json"
     if os.path.exists(file_path) and not force_update:
         with open(file_path, "r") as f:
             stats_dict = json.load(f)
     else:
-        stats_dict = get_weekly_stats(week)
+        stats_dict = get_weekly_stats(week, year)
 
     weekly_stats: Dict[str, WeeklyStats] = {}
     for player_id, player_stats in stats_dict.items():
@@ -42,14 +44,14 @@ def load_weekly_stats(week: int, force_update: bool = False) -> Dict[str, Weekly
 
 
 def load_weekly_projections(
-    week: int, force_update: bool = False
+    week: int, year: int, force_update: bool = False
 ) -> Dict[str, WeeklyProjection]:
-    file_path = f"data/projections/week{week}.json"
+    file_path = f"data/{year}/projections/week{week}.json"
     if os.path.exists(file_path) and not force_update:
         with open(file_path, "r") as f:
             projections_dict = json.load(f)
     else:
-        projections_dict = get_weekly_projections(week)
+        projections_dict = get_weekly_projections(week, year)
 
     weekly_projections: Dict[str, WeeklyProjection] = {}
     for player_id, player_projections in projections_dict.items():
@@ -62,12 +64,15 @@ def load_weekly_projections(
 
 
 def load_all_stats(
-    current_week: int, force_update: bool = False, logger: Optional[Logger] = None
+    current_week: int,
+    year: int,
+    force_update: bool = False,
+    logger: Optional[Logger] = None,
 ) -> Tuple[Dict[int, Dict[str, WeeklyStats]], Dict[int, Dict[str, WeeklyProjection]]]:
     all_stats: Dict[int, Dict[str, WeeklyStats]] = {}
     for week in range(1, current_week):
         try:
-            weekly_stats = load_weekly_stats(week, force_update)
+            weekly_stats = load_weekly_stats(week, year, force_update)
         except Exception as e:
             if logger:
                 logger.error(f"Error loading stats for week {week}: {e}")
@@ -77,7 +82,7 @@ def load_all_stats(
     all_projections: Dict[int, Dict[str, WeeklyProjection]] = {}
     for week in range(1, 19):
         try:
-            weekly_projections = load_weekly_projections(week, force_update)
+            weekly_projections = load_weekly_projections(week, year, force_update)
         except Exception as e:
             if logger:
                 logger.error(f"Error loading projections for week {week}: {e}")
@@ -87,8 +92,8 @@ def load_all_stats(
     return all_stats, all_projections
 
 
-def load_schedule():
-    file_path = "data/schedule.json"
+def load_schedule(year: int):
+    file_path = f"data/{year}/schedule.json"
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"File not found: {file_path}")
     with open(file_path, "r") as f:
