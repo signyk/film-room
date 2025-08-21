@@ -7,7 +7,6 @@ from pydantic import BaseModel, Field, model_validator
 from ff.utils import get_fantasy_points
 
 team_names: Dict[str, str] = json.load(open("data/team_names.json"))
-team_bye_weeks: Dict[str, int] = json.load(open("data/bye_weeks.json"))
 
 POSITIONS = ["QB", "RB", "WR", "TE", "K", "DEF"]
 EXTRA_POSITIONS = [
@@ -60,6 +59,7 @@ ExtraPosition: TypeAlias = Literal[
     "G",
     "OLB",
     "SS",
+    "ATH",
 ]
 
 
@@ -77,17 +77,14 @@ class InjuryStatus(Enum):
 class Team(BaseModel):
     short: str
     name: str
-    bye_week: int
 
     def __hash__(self) -> int:
         return hash(self.short)
 
 
 TEAMS: Dict[str, Team] = {
-    short: Team(short=short, name=name, bye_week=bye_week)
-    for short, name, bye_week in zip(
-        team_names.keys(), team_names.values(), team_bye_weeks.values()
-    )
+    short: Team(short=short, name=name)
+    for short, name in zip(team_names.keys(), team_names.values())
 }
 
 
@@ -135,7 +132,8 @@ class WeeklyStats(BaseModel):
     fgm_20_29: int = Field(alias="fgm_20_29", default=0)
     fgm_30_39: int = Field(alias="fgm_30_39", default=0)
     fgm_40_49: int = Field(alias="fgm_40_49", default=0)
-    fgm_50_plus: int = Field(alias="fgm_50p", default=0)
+    fgm_50_59: int = Field(alias="fgm_50_59", default=0)
+    fgm_60_plus: int = Field(alias="fgm_60p", default=0)
     xp_attempts: int = Field(alias="xpa", default=0)
     xp_made: int = Field(alias="xpm", default=0)
     # Passing
@@ -204,5 +202,8 @@ class Game(BaseModel):
             values["away_team"] = TEAMS[away_team_short]
         else:
             values["away_team"] = None
+            print(
+                f"Warning: Invalid team short name {away_team_short} in game {values.get('week')}"
+            )
 
         return values
