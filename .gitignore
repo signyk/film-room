@@ -1,4 +1,4 @@
-poetry.lock
+uv.lock
 .Rproj.user
 __pycache__/
 .Rhistory
@@ -7,3 +7,4 @@ rsconnect/
 ff.log
 update_dashboard.R
 renv.lock
+.python-version
