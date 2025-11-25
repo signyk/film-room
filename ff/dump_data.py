@@ -10,7 +10,7 @@ year = 2025
 logger.info(f"Current NFL week: {current_week}")
 
 try:
-    all_players = load_players(force_update=False)
+    all_players = load_players(force_update=True)
     logger.info("Loaded all players successfully.")
 except Exception as e:
     logger.error(f"Error loading players: {e}")
