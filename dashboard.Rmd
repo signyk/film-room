@@ -43,9 +43,6 @@ Sidebar {.sidebar}
 ```{r sidebar}
 CURRENT_YEAR <- 2025
 CURRENT_WEEK <- get_current_nfl_week()
-all_weeks <- unique(dat_s$Week)
-past_weeks <- all_weeks[all_weeks < CURRENT_WEEK]
-future_weeks <- all_weeks[all_weeks >= CURRENT_WEEK]
 
 renderText({
   paste("Current Week:", CURRENT_WEEK)
@@ -67,8 +64,8 @@ pickerInput(
 pickerInput(
     inputId = "week", 
     label = "Week", 
-    choices = list("Past weeks" = past_weeks, "Future weeks" = future_weeks),
-    selected=past_weeks, 
+    choices = list("Past weeks" = integer(0), "Future weeks" = integer(0)),
+    selected=NULL, 
     multiple = TRUE, 
     options = pickerOptions(
         actionsBox = TRUE, 
@@ -77,6 +74,34 @@ pickerInput(
         countSelectedText = "{0} weeks selected"
     )
 )
+
+observeEvent(input$year, ignoreInit = FALSE, {
+    req(input$year)
+    this_year <- as.integer(input$year)
+    
+    # weeks available for the selected year
+    weeks_this_year <- sort(unique(dat_s$Week[dat_s$Year == this_year]))
+    
+    # split into past/future relative to CURRENT_YEAR/CURRENT_WEEK
+    if (this_year < CURRENT_YEAR) {
+        past_weeks   <- weeks_this_year
+        future_weeks <- integer(0)
+    } else if (this_year > CURRENT_YEAR) {
+        past_weeks   <- integer(0)
+        future_weeks <- weeks_this_year
+    } else {
+        # this_year == CURRENT_YEAR
+        past_weeks   <- weeks_this_year[weeks_this_year <  CURRENT_WEEK]
+        future_weeks <- weeks_this_year[weeks_this_year >= CURRENT_WEEK]
+    }
+    
+    updatePickerInput(
+        session,
+        "week",
+        choices  = list("Past weeks" = past_weeks, "Future weeks" = future_weeks),
+        selected = past_weeks
+    )
+})
 
 pickerInput(
     inputId = "position", 
@@ -139,6 +164,7 @@ n_players_selected <- reactive({
   return(input$n_players)
 })
 
+
 ```
 
 ```{r data-processing}
@@ -200,11 +226,10 @@ renderPlotly({
         labs(title = "",
            x = "",
            y = "Total Points") +
-        theme_light() +
         theme(axis.text.x = element_text(angle = 45, hjust = 1), legend.position = "none") +
         scale_y_continuous(labels = scales::comma, breaks = get_breaks(y_breaks))
     
-    ggplotly(plot_theme(p), tooltip = c("text"))
+    plotly_theme(p)
 })
 ```
 
@@ -235,10 +260,10 @@ renderPlotly({
         ))
     
     dashed_line <- data_dependable %>% 
-        summarise(dependability = 0, points = max(!!sym(input$point_type))) %>%
+        summarise(dependability = 0, points = max(!!sym(input$point_type), na.rm=TRUE)) %>%
         ungroup() %>% 
         rbind(data_dependable %>% 
-             summarise(dependability = 1, points = min(!!sym(input$point_type))) %>%
+             summarise(dependability = 1, points = min(!!sym(input$point_type), na.rm=TRUE)) %>%
              ungroup())
   
     y_breaks <- data_dependable %>% pull(!!sym(input$point_type)) %>% sd() %>% smart_round() %>% max(., 1)
@@ -271,12 +296,11 @@ renderPlotly({
         labs(title = "",
             x = "Dependability",
             y = input$point_type) +
-        theme_light() +
         scale_color_manual(values = colors) +
         scale_x_continuous(breaks = get_breaks(0.1), labels = scales::percent_format(), limits = c(0, 1)) +
         scale_y_continuous(breaks = get_breaks(y_breaks)) +
         theme(legend.position = "none")
-    ggplotly(plot_theme(p), tooltip = c("text"))
+    plotly_theme(p)
 })
 ```
 
@@ -473,9 +497,8 @@ renderPlotly({
             x = "Week",
             y = "Points"
         ) +
-        theme_light() +
         theme(legend.position = "none")
-    ggplotly(plot_theme(p), tooltip = c("text"))
+    plotly_theme(p)
 })
 ```
 
@@ -539,10 +562,9 @@ renderPlotly({
         geom_bar(stat = "identity") +
         scale_x_continuous(labels = scales::comma, breaks = get_breaks(x_breaks)) +
         scale_fill_manual(values = position_colors) +
-        labs(x = input$point_type, y = "Opponent") +
-        theme_light()
+        labs(x = input$point_type, y = "Opponent")
     
-    ggplotly(plot_theme(p), tooltip = c("text"))
+    plotly_theme(p)
 })
 ```
 
