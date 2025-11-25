@@ -6,7 +6,7 @@ if TYPE_CHECKING:
 
 
 def get_current_nfl_week(
-    start_date: dt.date = dt.date(2025, 9, 4), today_date: dt.date = dt.date.today()
+    start_date: dt.date = dt.date(2025, 9, 2), today_date: dt.date = dt.date.today()
 ) -> int:
     """Determine the current NFL week based on the start date and today's date.
 
