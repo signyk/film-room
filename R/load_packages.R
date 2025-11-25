@@ -7,4 +7,6 @@ load_packages <- function(){
     require(jsonlite)
     require(plotly)
     require(DT)
+    require(lubridate)
+    require(reticulate)
 }
