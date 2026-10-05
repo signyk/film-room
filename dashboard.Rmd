@@ -143,6 +143,8 @@ numericInput(
 )
 
 selected_weeks <- reactive({
+  # The week picker is filled in by observeEvent above, so wait for it
+  req(input$week)
   str_extract_all(input$week, "\\d+")
 })
 
@@ -166,11 +168,12 @@ n_players_selected <- reactive({
 
 ```{r data-processing}
 dat <- reactive({
+    weeks <- selected_weeks()
     dat_s %>%
         filter(Year == input$year) %>%
         filter(Position %in% input$position) %>%
         filter(Team %in% input$team) %>%
-        filter(Week %in% selected_weeks()) %>% 
+        filter(Week %in% weeks) %>% 
         group_by(Player, Team) %>% 
         mutate("Total Points" = sum(Fantasy.Points, na.rm = TRUE),
                "Average Points" = mean(Fantasy.Points, na.rm = TRUE),
@@ -210,6 +213,7 @@ Top Scorers  {data-height=800, data-width=800}
 
 ```{r}
 renderPlotly({
+    shiny::validate(need(nrow(dat_summary()) > 0, "No data for the selected filters"))
     y_breaks <- dat_summary() %>% pull(!!sym(input$point_type)) %>% sd() %>% smart_round() %>% max(., 1)
     p <- dat_summary() %>%
         mutate(text=paste0(
@@ -249,7 +253,8 @@ Dependability {data-height=800, data-width=800}
 ### Dependability of Fantasy Football Players
 ```{r}
 renderPlotly({
-    data_dependable <- dat_summary() %>% 
+    shiny::validate(need(nrow(dat_summary()) > 0, "No data for the selected filters"))
+    data_dependable <- dat_summary() %>%
         mutate(text=paste0(
             Player,"\nPosition: ", Position, "\nTeam: ", Team, 
             "\n", input$point_type, ": ", round(!!sym(input$point_type),2), 
@@ -266,27 +271,20 @@ renderPlotly({
     y_breaks <- data_dependable %>% pull(!!sym(input$point_type)) %>% sd() %>% smart_round() %>% max(., 1)
     y_nudge <- (data_dependable %>% pull(!!sym(input$point_type)) %>% sd())/10
     
-    p <- ggplot() +
-        geom_point(
-            data = data_dependable, 
-            aes(x=dependability, y=!!sym(input$point_type), color=Team, text=text),
-            size=3
+    p <- ggplot(
+            data = data_dependable,
+            aes(x=dependability, y=!!sym(input$point_type), color=Team, text=text)
         ) +
+        geom_point(size=3) +
         geom_line(
-            data=dashed_line, 
-            linetype="dashed", 
-            aes(x=dependability, y=points), 
+            data=dashed_line,
+            linetype="dashed",
+            aes(x=dependability, y=points),
             color="#ffffff",
+            inherit.aes = FALSE
         ) +
         geom_text(
-            data = data_dependable, 
-            aes(
-                x=dependability,
-                y=!!sym(input$point_type),
-                label=Player, 
-                color=Team, 
-                text=text
-            ), 
+            aes(label=Player),
             nudge_y = y_nudge,
             size=3.5,
         ) +
@@ -347,10 +345,11 @@ Values {data-height=160, data-width=160}
 
 ```{r}
 player_dat <- reactive({
+    weeks <- selected_weeks()
     return_dat <- dat_s %>% 
         filter(Year == input$year) %>%
         filter(Opponent %in% input$team) %>%
-        filter(Week %in% selected_weeks()) %>% 
+        filter(Week %in% weeks) %>% 
         group_by(Player, Position) %>% 
         mutate("Total Points" = sum(Fantasy.Points, na.rm = TRUE),
                "Average Points" = mean(Fantasy.Points, na.rm = TRUE),
@@ -442,12 +441,11 @@ renderValueBox({
 renderValueBox({
     value <- player_dat_filtered() %>% 
         filter(key == "Fantasy Points") %>% 
-        pull(value) %>% 
-        max(na.rm = TRUE) %>% 
-        round(2)
-    
+        pull(value)
+    value <- if (all(is.na(value))) 0 else round(max(value, na.rm = TRUE), 2)
+
     valueBox(
-        value = if_else(is.na(value) | is.infinite(value), 0, value),
+        value = value,
         color = player_color(),
         icon = "fa-trophy"
     )
@@ -481,11 +479,12 @@ Player {data-height=800, data-width=800}
 ### Player Points per Week
 ```{r}
 renderPlotly({
+    shiny::validate(need(nrow(player_dat_filtered()) > 0, "No data for this player in the selected weeks"))
     player_color <- player_color() %>% rep(2)
-    
-    p <- player_dat_filtered() %>% 
-        ggplot() +
-        geom_col(aes(x = Week, y = value, fill=key, text=text, alpha=key), position="dodge") +
+
+    p <- player_dat_filtered() %>%
+        ggplot(aes(text=text)) +
+        geom_col(aes(x = Week, y = value, fill=key, alpha=key), position="dodge") +
         scale_fill_manual(values = player_color) +
         scale_alpha_manual(values = c(1, 0.5)) +
         scale_x_continuous(breaks = get_breaks(1)) +
@@ -505,6 +504,7 @@ PlayerData {data-height=800, data-width=800}
 ### Player Statistics
 ```{r}
 renderDataTable({
+    shiny::validate(need(nrow(player_dat_filtered()) > 0, "No data for this player in the selected weeks"))
     player_position <- player_dat_filtered() %>% pull(Position) %>% head(1)
     stat_cols <- stat_variables(player_position)
     player_dat() %>% 
@@ -524,7 +524,8 @@ Opponent {data-height=800, data-width=800}
 ### Points to Positions by Opponent
 ```{r}
 renderPlotly({
-    team_data <- dat() %>% 
+    shiny::validate(need(nrow(dat()) > 0, "No data for the selected filters"))
+    team_data <- dat() %>%
         filter(!is.na(Opponent) & Opponent != "") %>% 
         group_by(Opponent, Week, Position) %>% 
         mutate(
