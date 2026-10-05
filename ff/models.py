@@ -115,6 +115,7 @@ class Player(BaseModel):
             InjuryStatus(injury_status)
             if injury_status is not None
             and injury_status != "NA"
+            and injury_status != "Active"
             and injury_status != ""
             else None
         )
@@ -194,11 +195,11 @@ class Game(BaseModel):
         away_team_short = values.get("away_team")
         if isinstance(home_team_short, Team) and isinstance(away_team_short, Team):
             return values
-        if home_team_short is not None and home_team_short in TEAMS:
+        if isinstance(home_team_short, str) and home_team_short in TEAMS:
             values["home_team"] = TEAMS[home_team_short]
         else:
             values["home_team"] = None
-        if away_team_short is not None and away_team_short in TEAMS:
+        if isinstance(away_team_short, str) and away_team_short in TEAMS:
             values["away_team"] = TEAMS[away_team_short]
         else:
             values["away_team"] = None

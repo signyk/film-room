@@ -26,22 +26,19 @@ source("R/colors.R")
 source("R/teams.R")
 source("R/utils.R")
 
-data_raw24 <- read.csv("data/2024/weekly_fantasy_points.csv")
-data_raw25 <- read.csv("data/2025/weekly_fantasy_points.csv")
-dat_s24 <- data_raw24 %>%
-  mutate(Fantasy.Points = if_else(Projection==0.0 & Fantasy.Points==0.0, NA, Fantasy.Points))
-dat_s25 <- data_raw25 %>%
-  mutate(Fantasy.Points = if_else(Projection==0.0 & Fantasy.Points==0.0, NA, Fantasy.Points))
+YEARS <- c(2024, 2025, 2026)
 
-dat_s <- dat_s24 %>% 
-    mutate(Year=2024) %>% 
-    bind_rows(dat_s25 %>% mutate(Year=2025))
+dat_s <- bind_rows(lapply(YEARS, function(year) {
+  read.csv(paste0("data/", year, "/weekly_fantasy_points.csv")) %>%
+    mutate(Fantasy.Points = if_else(Projection==0.0 & Fantasy.Points==0.0, NA, Fantasy.Points)) %>%
+    mutate(Year=year)
+}))
 ```
 
 Sidebar {.sidebar}
 =====================================
 ```{r sidebar}
-CURRENT_YEAR <- 2025
+CURRENT_YEAR <- max(YEARS)
 CURRENT_WEEK <- get_current_nfl_week()
 
 renderText({
@@ -52,7 +49,7 @@ br()
 pickerInput(
     inputId = "year",
     label = "Year",
-    choices = c(2024, 2025),
+    choices = YEARS,
     selected = CURRENT_YEAR,
     multiple = FALSE,
     options = pickerOptions(

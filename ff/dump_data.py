@@ -6,7 +6,7 @@ from ff.service.callers import load_all_stats, load_players, load_schedule
 from ff.utils import get_current_nfl_week
 
 current_week = get_current_nfl_week()
-year = 2025
+year = 2026
 logger.info(f"Current NFL week: {current_week}")
 
 try:
