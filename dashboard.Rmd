@@ -515,8 +515,88 @@ renderDataTable({
 })
 ```
 
+Compare
+=====================================
+
+```{r compare-data}
+compare_matchups <- position_matchups(dat_s, CURRENT_YEAR, CURRENT_WEEK)
+
+compare_players_df <- dat_s %>%
+    filter(Year == CURRENT_YEAR) %>%
+    distinct(Player, Team, Position) %>%
+    arrange(Player)
+compare_choices <- setNames(
+    compare_players_df$Player,
+    paste0(compare_players_df$Player, " (", compare_players_df$Position, ", ", compare_players_df$Team, ")")
+)
+
+# Default to the two highest projected players this week
+compare_defaults <- dat_s %>%
+    filter(Year == CURRENT_YEAR, Week == CURRENT_WEEK) %>%
+    arrange(desc(Projection)) %>%
+    pull(Player)
+if (length(compare_defaults) < 2) {
+    compare_defaults <- unname(compare_choices)
+}
+
+compare_a <- reactive({
+    req(input$compare_a)
+    player_compare_stats(dat_s, input$compare_a, CURRENT_YEAR, CURRENT_WEEK, compare_matchups)
+})
+compare_b <- reactive({
+    req(input$compare_b)
+    player_compare_stats(dat_s, input$compare_b, CURRENT_YEAR, CURRENT_WEEK, compare_matchups)
+})
+comparison <- reactive({
+    compare_players(compare_a(), compare_b())
+})
+
+# Clicking a player's name on a card opens them on the Players page
+observeEvent(input$compare_open_player, {
+    if (as.integer(input$year) != CURRENT_YEAR) {
+        updatePickerInput(session, "year", selected = CURRENT_YEAR)
+    }
+    updatePickerInput(session, "player", selected = input$compare_open_player)
+})
+```
+
+Comparison {data-height=950}
+-----------------------------------------------------------------------
+
+### {.no-title}
+```{r}
+pickerInput(
+    inputId = "compare_a",
+    label = NULL,
+    choices = compare_choices,
+    selected = compare_defaults[1],
+    width = "100%",
+    options = pickerOptions(container = "body", liveSearch = TRUE, size = 10)
+)
+
+renderUI({
+    compare_card(compare_a(), comparison(), "a")
+})
+```
+
+### {.no-title}
+```{r}
+pickerInput(
+    inputId = "compare_b",
+    label = NULL,
+    choices = compare_choices,
+    selected = compare_defaults[2],
+    width = "100%",
+    options = pickerOptions(container = "body", liveSearch = TRUE, size = 10)
+)
+
+renderUI({
+    compare_card(compare_b(), comparison(), "b")
+})
+```
+
 Opponents
-=====================================  
+=====================================
 
 Opponent {data-height=800, data-width=800}
 -----------------------------------------------------------------------
