@@ -1,0 +1,1362 @@
+[
+    {
+        "home_team": "CAR",
+        "away_team": "CHI",
+        "week": 1
+    },
+    {
+        "home_team": "CIN",
+        "away_team": "TB",
+        "week": 1
+    },
+    {
+        "home_team": "DET",
+        "away_team": "NO",
+        "week": 1
+    },
+    {
+        "home_team": "HOU",
+        "away_team": "BUF",
+        "week": 1
+    },
+    {
+        "home_team": "IND",
+        "away_team": "BAL",
+        "week": 1
+    },
+    {
+        "home_team": "JAX",
+        "away_team": "CLE",
+        "week": 1
+    },
+    {
+        "home_team": "KC",
+        "away_team": "DEN",
+        "week": 1
+    },
+    {
+        "home_team": "MIN",
+        "away_team": "GB",
+        "week": 1
+    },
+    {
+        "home_team": "NYG",
+        "away_team": "DAL",
+        "week": 1
+    },
+    {
+        "home_team": "LV",
+        "away_team": "MIA",
+        "week": 1
+    },
+    {
+        "home_team": "PHI",
+        "away_team": "WAS",
+        "week": 1
+    },
+    {
+        "home_team": "PIT",
+        "away_team": "ATL",
+        "week": 1
+    },
+    {
+        "home_team": "LAC",
+        "away_team": "ARI",
+        "week": 1
+    },
+    {
+        "home_team": "SEA",
+        "away_team": "NE",
+        "week": 1
+    },
+    {
+        "home_team": "LAR",
+        "away_team": "SF",
+        "week": 1
+    },
+    {
+        "home_team": "TEN",
+        "away_team": "NYJ",
+        "week": 1
+    },
+    {
+        "home_team": "ARI",
+        "away_team": "SEA",
+        "week": 2
+    },
+    {
+        "home_team": "ATL",
+        "away_team": "CAR",
+        "week": 2
+    },
+    {
+        "home_team": "BAL",
+        "away_team": "NO",
+        "week": 2
+    },
+    {
+        "home_team": "BUF",
+        "away_team": "DET",
+        "week": 2
+    },
+    {
+        "home_team": "CHI",
+        "away_team": "MIN",
+        "week": 2
+    },
+    {
+        "home_team": "DAL",
+        "away_team": "WAS",
+        "week": 2
+    },
+    {
+        "home_team": "DEN",
+        "away_team": "JAX",
+        "week": 2
+    },
+    {
+        "home_team": "HOU",
+        "away_team": "CIN",
+        "week": 2
+    },
+    {
+        "home_team": "KC",
+        "away_team": "IND",
+        "week": 2
+    },
+    {
+        "home_team": "NE",
+        "away_team": "PIT",
+        "week": 2
+    },
+    {
+        "home_team": "NYJ",
+        "away_team": "GB",
+        "week": 2
+    },
+    {
+        "home_team": "LAC",
+        "away_team": "LV",
+        "week": 2
+    },
+    {
+        "home_team": "SF",
+        "away_team": "MIA",
+        "week": 2
+    },
+    {
+        "home_team": "LAR",
+        "away_team": "NYG",
+        "week": 2
+    },
+    {
+        "home_team": "TB",
+        "away_team": "CLE",
+        "week": 2
+    },
+    {
+        "home_team": "TEN",
+        "away_team": "PHI",
+        "week": 2
+    },
+    {
+        "home_team": "BUF",
+        "away_team": "LAC",
+        "week": 3
+    },
+    {
+        "home_team": "CHI",
+        "away_team": "PHI",
+        "week": 3
+    },
+    {
+        "home_team": "CLE",
+        "away_team": "CAR",
+        "week": 3
+    },
+    {
+        "home_team": "DAL",
+        "away_team": "BAL",
+        "week": 3
+    },
+    {
+        "home_team": "DEN",
+        "away_team": "LAR",
+        "week": 3
+    },
+    {
+        "home_team": "DET",
+        "away_team": "NYJ",
+        "week": 3
+    },
+    {
+        "home_team": "GB",
+        "away_team": "ATL",
+        "week": 3
+    },
+    {
+        "home_team": "IND",
+        "away_team": "HOU",
+        "week": 3
+    },
+    {
+        "home_team": "JAX",
+        "away_team": "NE",
+        "week": 3
+    },
+    {
+        "home_team": "MIA",
+        "away_team": "KC",
+        "week": 3
+    },
+    {
+        "home_team": "NO",
+        "away_team": "LV",
+        "week": 3
+    },
+    {
+        "home_team": "NYG",
+        "away_team": "TEN",
+        "week": 3
+    },
+    {
+        "home_team": "PIT",
+        "away_team": "CIN",
+        "week": 3
+    },
+    {
+        "home_team": "SF",
+        "away_team": "ARI",
+        "week": 3
+    },
+    {
+        "home_team": "TB",
+        "away_team": "MIN",
+        "week": 3
+    },
+    {
+        "home_team": "WAS",
+        "away_team": "SEA",
+        "week": 3
+    },
+    {
+        "home_team": "BAL",
+        "away_team": "TEN",
+        "week": 4
+    },
+    {
+        "home_team": "BUF",
+        "away_team": "NE",
+        "week": 4
+    },
+    {
+        "home_team": "CAR",
+        "away_team": "DET",
+        "week": 4
+    },
+    {
+        "home_team": "CHI",
+        "away_team": "NYJ",
+        "week": 4
+    },
+    {
+        "home_team": "CIN",
+        "away_team": "JAX",
+        "week": 4
+    },
+    {
+        "home_team": "CLE",
+        "away_team": "PIT",
+        "week": 4
+    },
+    {
+        "home_team": "HOU",
+        "away_team": "DAL",
+        "week": 4
+    },
+    {
+        "home_team": "MIN",
+        "away_team": "MIA",
+        "week": 4
+    },
+    {
+        "home_team": "NO",
+        "away_team": "ATL",
+        "week": 4
+    },
+    {
+        "home_team": "NYG",
+        "away_team": "ARI",
+        "week": 4
+    },
+    {
+        "home_team": "LV",
+        "away_team": "KC",
+        "week": 4
+    },
+    {
+        "home_team": "PHI",
+        "away_team": "LAR",
+        "week": 4
+    },
+    {
+        "home_team": "SEA",
+        "away_team": "LAC",
+        "week": 4
+    },
+    {
+        "home_team": "SF",
+        "away_team": "DEN",
+        "week": 4
+    },
+    {
+        "home_team": "TB",
+        "away_team": "GB",
+        "week": 4
+    },
+    {
+        "home_team": "WAS",
+        "away_team": "IND",
+        "week": 4
+    },
+    {
+        "home_team": "ARI",
+        "away_team": "DET",
+        "week": 5
+    },
+    {
+        "home_team": "ATL",
+        "away_team": "BAL",
+        "week": 5
+    },
+    {
+        "home_team": "DAL",
+        "away_team": "TB",
+        "week": 5
+    },
+    {
+        "home_team": "GB",
+        "away_team": "CHI",
+        "week": 5
+    },
+    {
+        "home_team": "JAX",
+        "away_team": "PHI",
+        "week": 5
+    },
+    {
+        "home_team": "MIA",
+        "away_team": "CIN",
+        "week": 5
+    },
+    {
+        "home_team": "NE",
+        "away_team": "LV",
+        "week": 5
+    },
+    {
+        "home_team": "NO",
+        "away_team": "MIN",
+        "week": 5
+    },
+    {
+        "home_team": "NYJ",
+        "away_team": "CLE",
+        "week": 5
+    },
+    {
+        "home_team": "PIT",
+        "away_team": "IND",
+        "week": 5
+    },
+    {
+        "home_team": "LAC",
+        "away_team": "DEN",
+        "week": 5
+    },
+    {
+        "home_team": "SEA",
+        "away_team": "SF",
+        "week": 5
+    },
+    {
+        "home_team": "LAR",
+        "away_team": "BUF",
+        "week": 5
+    },
+    {
+        "home_team": "TEN",
+        "away_team": "HOU",
+        "week": 5
+    },
+    {
+        "home_team": "WAS",
+        "away_team": "NYG",
+        "week": 5
+    },
+    {
+        "home_team": "ATL",
+        "away_team": "CHI",
+        "week": 6
+    },
+    {
+        "home_team": "CLE",
+        "away_team": "BAL",
+        "week": 6
+    },
+    {
+        "home_team": "DEN",
+        "away_team": "SEA",
+        "week": 6
+    },
+    {
+        "home_team": "GB",
+        "away_team": "DAL",
+        "week": 6
+    },
+    {
+        "home_team": "IND",
+        "away_team": "TEN",
+        "week": 6
+    },
+    {
+        "home_team": "JAX",
+        "away_team": "HOU",
+        "week": 6
+    },
+    {
+        "home_team": "KC",
+        "away_team": "LAC",
+        "week": 6
+    },
+    {
+        "home_team": "NE",
+        "away_team": "NYJ",
+        "week": 6
+    },
+    {
+        "home_team": "NYG",
+        "away_team": "NO",
+        "week": 6
+    },
+    {
+        "home_team": "LV",
+        "away_team": "BUF",
+        "week": 6
+    },
+    {
+        "home_team": "PHI",
+        "away_team": "CAR",
+        "week": 6
+    },
+    {
+        "home_team": "SF",
+        "away_team": "WAS",
+        "week": 6
+    },
+    {
+        "home_team": "LAR",
+        "away_team": "ARI",
+        "week": 6
+    },
+    {
+        "home_team": "TB",
+        "away_team": "PIT",
+        "week": 6
+    },
+    {
+        "home_team": "ARI",
+        "away_team": "DEN",
+        "week": 7
+    },
+    {
+        "home_team": "ATL",
+        "away_team": "SF",
+        "week": 7
+    },
+    {
+        "home_team": "BAL",
+        "away_team": "CIN",
+        "week": 7
+    },
+    {
+        "home_team": "CAR",
+        "away_team": "TB",
+        "week": 7
+    },
+    {
+        "home_team": "CHI",
+        "away_team": "NE",
+        "week": 7
+    },
+    {
+        "home_team": "DET",
+        "away_team": "GB",
+        "week": 7
+    },
+    {
+        "home_team": "HOU",
+        "away_team": "NYG",
+        "week": 7
+    },
+    {
+        "home_team": "MIN",
+        "away_team": "IND",
+        "week": 7
+    },
+    {
+        "home_team": "NO",
+        "away_team": "PIT",
+        "week": 7
+    },
+    {
+        "home_team": "NYJ",
+        "away_team": "MIA",
+        "week": 7
+    },
+    {
+        "home_team": "LV",
+        "away_team": "LAR",
+        "week": 7
+    },
+    {
+        "home_team": "PHI",
+        "away_team": "DAL",
+        "week": 7
+    },
+    {
+        "home_team": "SEA",
+        "away_team": "KC",
+        "week": 7
+    },
+    {
+        "home_team": "TEN",
+        "away_team": "CLE",
+        "week": 7
+    },
+    {
+        "home_team": "BUF",
+        "away_team": "BAL",
+        "week": 8
+    },
+    {
+        "home_team": "CIN",
+        "away_team": "TEN",
+        "week": 8
+    },
+    {
+        "home_team": "DAL",
+        "away_team": "ARI",
+        "week": 8
+    },
+    {
+        "home_team": "DEN",
+        "away_team": "KC",
+        "week": 8
+    },
+    {
+        "home_team": "DET",
+        "away_team": "MIN",
+        "week": 8
+    },
+    {
+        "home_team": "GB",
+        "away_team": "CAR",
+        "week": 8
+    },
+    {
+        "home_team": "JAX",
+        "away_team": "IND",
+        "week": 8
+    },
+    {
+        "home_team": "MIA",
+        "away_team": "NE",
+        "week": 8
+    },
+    {
+        "home_team": "NYJ",
+        "away_team": "LV",
+        "week": 8
+    },
+    {
+        "home_team": "PIT",
+        "away_team": "CLE",
+        "week": 8
+    },
+    {
+        "home_team": "SEA",
+        "away_team": "CHI",
+        "week": 8
+    },
+    {
+        "home_team": "LAR",
+        "away_team": "LAC",
+        "week": 8
+    },
+    {
+        "home_team": "TB",
+        "away_team": "ATL",
+        "week": 8
+    },
+    {
+        "home_team": "WAS",
+        "away_team": "PHI",
+        "week": 8
+    },
+    {
+        "home_team": "ATL",
+        "away_team": "CIN",
+        "week": 9
+    },
+    {
+        "home_team": "BAL",
+        "away_team": "JAX",
+        "week": 9
+    },
+    {
+        "home_team": "CAR",
+        "away_team": "DEN",
+        "week": 9
+    },
+    {
+        "home_team": "CHI",
+        "away_team": "TB",
+        "week": 9
+    },
+    {
+        "home_team": "IND",
+        "away_team": "DAL",
+        "week": 9
+    },
+    {
+        "home_team": "KC",
+        "away_team": "NYJ",
+        "week": 9
+    },
+    {
+        "home_team": "MIA",
+        "away_team": "DET",
+        "week": 9
+    },
+    {
+        "home_team": "MIN",
+        "away_team": "BUF",
+        "week": 9
+    },
+    {
+        "home_team": "NE",
+        "away_team": "GB",
+        "week": 9
+    },
+    {
+        "home_team": "NO",
+        "away_team": "CLE",
+        "week": 9
+    },
+    {
+        "home_team": "PHI",
+        "away_team": "NYG",
+        "week": 9
+    },
+    {
+        "home_team": "LAC",
+        "away_team": "HOU",
+        "week": 9
+    },
+    {
+        "home_team": "SEA",
+        "away_team": "ARI",
+        "week": 9
+    },
+    {
+        "home_team": "SF",
+        "away_team": "LV",
+        "week": 9
+    },
+    {
+        "home_team": "WAS",
+        "away_team": "LAR",
+        "week": 9
+    },
+    {
+        "home_team": "ARI",
+        "away_team": "LAR",
+        "week": 10
+    },
+    {
+        "home_team": "ATL",
+        "away_team": "KC",
+        "week": 10
+    },
+    {
+        "home_team": "BAL",
+        "away_team": "LAC",
+        "week": 10
+    },
+    {
+        "home_team": "CIN",
+        "away_team": "PIT",
+        "week": 10
+    },
+    {
+        "home_team": "CLE",
+        "away_team": "HOU",
+        "week": 10
+    },
+    {
+        "home_team": "DAL",
+        "away_team": "SF",
+        "week": 10
+    },
+    {
+        "home_team": "DET",
+        "away_team": "NE",
+        "week": 10
+    },
+    {
+        "home_team": "GB",
+        "away_team": "MIN",
+        "week": 10
+    },
+    {
+        "home_team": "IND",
+        "away_team": "MIA",
+        "week": 10
+    },
+    {
+        "home_team": "NO",
+        "away_team": "CAR",
+        "week": 10
+    },
+    {
+        "home_team": "NYG",
+        "away_team": "WAS",
+        "week": 10
+    },
+    {
+        "home_team": "NYJ",
+        "away_team": "BUF",
+        "week": 10
+    },
+    {
+        "home_team": "LV",
+        "away_team": "SEA",
+        "week": 10
+    },
+    {
+        "home_team": "TEN",
+        "away_team": "JAX",
+        "week": 10
+    },
+    {
+        "home_team": "BUF",
+        "away_team": "MIA",
+        "week": 11
+    },
+    {
+        "home_team": "CAR",
+        "away_team": "BAL",
+        "week": 11
+    },
+    {
+        "home_team": "CHI",
+        "away_team": "NO",
+        "week": 11
+    },
+    {
+        "home_team": "DAL",
+        "away_team": "TEN",
+        "week": 11
+    },
+    {
+        "home_team": "DEN",
+        "away_team": "LV",
+        "week": 11
+    },
+    {
+        "home_team": "DET",
+        "away_team": "TB",
+        "week": 11
+    },
+    {
+        "home_team": "HOU",
+        "away_team": "IND",
+        "week": 11
+    },
+    {
+        "home_team": "KC",
+        "away_team": "ARI",
+        "week": 11
+    },
+    {
+        "home_team": "NYG",
+        "away_team": "JAX",
+        "week": 11
+    },
+    {
+        "home_team": "PHI",
+        "away_team": "PIT",
+        "week": 11
+    },
+    {
+        "home_team": "LAC",
+        "away_team": "NYJ",
+        "week": 11
+    },
+    {
+        "home_team": "SF",
+        "away_team": "MIN",
+        "week": 11
+    },
+    {
+        "home_team": "WAS",
+        "away_team": "CIN",
+        "week": 11
+    },
+    {
+        "home_team": "ARI",
+        "away_team": "WAS",
+        "week": 12
+    },
+    {
+        "home_team": "BUF",
+        "away_team": "KC",
+        "week": 12
+    },
+    {
+        "home_team": "CIN",
+        "away_team": "NO",
+        "week": 12
+    },
+    {
+        "home_team": "CLE",
+        "away_team": "LV",
+        "week": 12
+    },
+    {
+        "home_team": "DAL",
+        "away_team": "PHI",
+        "week": 12
+    },
+    {
+        "home_team": "DET",
+        "away_team": "CHI",
+        "week": 12
+    },
+    {
+        "home_team": "HOU",
+        "away_team": "BAL",
+        "week": 12
+    },
+    {
+        "home_team": "IND",
+        "away_team": "NYG",
+        "week": 12
+    },
+    {
+        "home_team": "JAX",
+        "away_team": "TEN",
+        "week": 12
+    },
+    {
+        "home_team": "MIA",
+        "away_team": "NYJ",
+        "week": 12
+    },
+    {
+        "home_team": "MIN",
+        "away_team": "ATL",
+        "week": 12
+    },
+    {
+        "home_team": "PIT",
+        "away_team": "DEN",
+        "week": 12
+    },
+    {
+        "home_team": "LAC",
+        "away_team": "NE",
+        "week": 12
+    },
+    {
+        "home_team": "SF",
+        "away_team": "SEA",
+        "week": 12
+    },
+    {
+        "home_team": "LAR",
+        "away_team": "GB",
+        "week": 12
+    },
+    {
+        "home_team": "TB",
+        "away_team": "CAR",
+        "week": 12
+    },
+    {
+        "home_team": "ARI",
+        "away_team": "PHI",
+        "week": 13
+    },
+    {
+        "home_team": "ATL",
+        "away_team": "DET",
+        "week": 13
+    },
+    {
+        "home_team": "CHI",
+        "away_team": "JAX",
+        "week": 13
+    },
+    {
+        "home_team": "CLE",
+        "away_team": "CIN",
+        "week": 13
+    },
+    {
+        "home_team": "DEN",
+        "away_team": "MIA",
+        "week": 13
+    },
+    {
+        "home_team": "MIN",
+        "away_team": "CAR",
+        "week": 13
+    },
+    {
+        "home_team": "NE",
+        "away_team": "BUF",
+        "week": 13
+    },
+    {
+        "home_team": "NO",
+        "away_team": "GB",
+        "week": 13
+    },
+    {
+        "home_team": "NYG",
+        "away_team": "SF",
+        "week": 13
+    },
+    {
+        "home_team": "PIT",
+        "away_team": "HOU",
+        "week": 13
+    },
+    {
+        "home_team": "SEA",
+        "away_team": "DAL",
+        "week": 13
+    },
+    {
+        "home_team": "LAR",
+        "away_team": "KC",
+        "week": 13
+    },
+    {
+        "home_team": "TB",
+        "away_team": "LAC",
+        "week": 13
+    },
+    {
+        "home_team": "TEN",
+        "away_team": "WAS",
+        "week": 13
+    },
+    {
+        "home_team": "BAL",
+        "away_team": "TB",
+        "week": 14
+    },
+    {
+        "home_team": "CAR",
+        "away_team": "NO",
+        "week": 14
+    },
+    {
+        "home_team": "CIN",
+        "away_team": "KC",
+        "week": 14
+    },
+    {
+        "home_team": "CLE",
+        "away_team": "ATL",
+        "week": 14
+    },
+    {
+        "home_team": "DET",
+        "away_team": "TEN",
+        "week": 14
+    },
+    {
+        "home_team": "GB",
+        "away_team": "BUF",
+        "week": 14
+    },
+    {
+        "home_team": "JAX",
+        "away_team": "PIT",
+        "week": 14
+    },
+    {
+        "home_team": "MIA",
+        "away_team": "CHI",
+        "week": 14
+    },
+    {
+        "home_team": "NE",
+        "away_team": "MIN",
+        "week": 14
+    },
+    {
+        "home_team": "NYJ",
+        "away_team": "DEN",
+        "week": 14
+    },
+    {
+        "home_team": "LV",
+        "away_team": "LAC",
+        "week": 14
+    },
+    {
+        "home_team": "PHI",
+        "away_team": "IND",
+        "week": 14
+    },
+    {
+        "home_team": "SEA",
+        "away_team": "NYG",
+        "week": 14
+    },
+    {
+        "home_team": "SF",
+        "away_team": "LAR",
+        "week": 14
+    },
+    {
+        "home_team": "WAS",
+        "away_team": "HOU",
+        "week": 14
+    },
+    {
+        "home_team": "ARI",
+        "away_team": "NYJ",
+        "week": 15
+    },
+    {
+        "home_team": "BUF",
+        "away_team": "CHI",
+        "week": 15
+    },
+    {
+        "home_team": "CAR",
+        "away_team": "CIN",
+        "week": 15
+    },
+    {
+        "home_team": "GB",
+        "away_team": "MIA",
+        "week": 15
+    },
+    {
+        "home_team": "HOU",
+        "away_team": "JAX",
+        "week": 15
+    },
+    {
+        "home_team": "KC",
+        "away_team": "NE",
+        "week": 15
+    },
+    {
+        "home_team": "MIN",
+        "away_team": "DET",
+        "week": 15
+    },
+    {
+        "home_team": "NYG",
+        "away_team": "CLE",
+        "week": 15
+    },
+    {
+        "home_team": "LV",
+        "away_team": "DEN",
+        "week": 15
+    },
+    {
+        "home_team": "PHI",
+        "away_team": "SEA",
+        "week": 15
+    },
+    {
+        "home_team": "PIT",
+        "away_team": "BAL",
+        "week": 15
+    },
+    {
+        "home_team": "LAC",
+        "away_team": "SF",
+        "week": 15
+    },
+    {
+        "home_team": "LAR",
+        "away_team": "DAL",
+        "week": 15
+    },
+    {
+        "home_team": "TB",
+        "away_team": "NO",
+        "week": 15
+    },
+    {
+        "home_team": "TEN",
+        "away_team": "IND",
+        "week": 15
+    },
+    {
+        "home_team": "WAS",
+        "away_team": "ATL",
+        "week": 15
+    },
+    {
+        "home_team": "ATL",
+        "away_team": "TB",
+        "week": 16
+    },
+    {
+        "home_team": "BAL",
+        "away_team": "CLE",
+        "week": 16
+    },
+    {
+        "home_team": "CHI",
+        "away_team": "GB",
+        "week": 16
+    },
+    {
+        "home_team": "DAL",
+        "away_team": "JAX",
+        "week": 16
+    },
+    {
+        "home_team": "DEN",
+        "away_team": "BUF",
+        "week": 16
+    },
+    {
+        "home_team": "DET",
+        "away_team": "NYG",
+        "week": 16
+    },
+    {
+        "home_team": "IND",
+        "away_team": "CIN",
+        "week": 16
+    },
+    {
+        "home_team": "KC",
+        "away_team": "SF",
+        "week": 16
+    },
+    {
+        "home_team": "MIA",
+        "away_team": "LAC",
+        "week": 16
+    },
+    {
+        "home_team": "MIN",
+        "away_team": "WAS",
+        "week": 16
+    },
+    {
+        "home_team": "NO",
+        "away_team": "ARI",
+        "week": 16
+    },
+    {
+        "home_team": "NYJ",
+        "away_team": "NE",
+        "week": 16
+    },
+    {
+        "home_team": "LV",
+        "away_team": "TEN",
+        "week": 16
+    },
+    {
+        "home_team": "PHI",
+        "away_team": "HOU",
+        "week": 16
+    },
+    {
+        "home_team": "PIT",
+        "away_team": "CAR",
+        "week": 16
+    },
+    {
+        "home_team": "SEA",
+        "away_team": "LAR",
+        "week": 16
+    },
+    {
+        "home_team": "ARI",
+        "away_team": "LV",
+        "week": 17
+    },
+    {
+        "home_team": "ATL",
+        "away_team": "NO",
+        "week": 17
+    },
+    {
+        "home_team": "CAR",
+        "away_team": "SEA",
+        "week": 17
+    },
+    {
+        "home_team": "CHI",
+        "away_team": "DET",
+        "week": 17
+    },
+    {
+        "home_team": "CIN",
+        "away_team": "BAL",
+        "week": 17
+    },
+    {
+        "home_team": "CLE",
+        "away_team": "IND",
+        "week": 17
+    },
+    {
+        "home_team": "DAL",
+        "away_team": "NYG",
+        "week": 17
+    },
+    {
+        "home_team": "GB",
+        "away_team": "HOU",
+        "week": 17
+    },
+    {
+        "home_team": "JAX",
+        "away_team": "WAS",
+        "week": 17
+    },
+    {
+        "home_team": "MIA",
+        "away_team": "BUF",
+        "week": 17
+    },
+    {
+        "home_team": "NE",
+        "away_team": "DEN",
+        "week": 17
+    },
+    {
+        "home_team": "NYJ",
+        "away_team": "MIN",
+        "week": 17
+    },
+    {
+        "home_team": "LAC",
+        "away_team": "KC",
+        "week": 17
+    },
+    {
+        "home_team": "SF",
+        "away_team": "PHI",
+        "week": 17
+    },
+    {
+        "home_team": "TB",
+        "away_team": "LAR",
+        "week": 17
+    },
+    {
+        "home_team": "TEN",
+        "away_team": "PIT",
+        "week": 17
+    },
+    {
+        "home_team": "ARI",
+        "away_team": "SF",
+        "week": 18
+    },
+    {
+        "home_team": "BAL",
+        "away_team": "PIT",
+        "week": 18
+    },
+    {
+        "home_team": "BUF",
+        "away_team": "NYJ",
+        "week": 18
+    },
+    {
+        "home_team": "CAR",
+        "away_team": "ATL",
+        "week": 18
+    },
+    {
+        "home_team": "CIN",
+        "away_team": "CLE",
+        "week": 18
+    },
+    {
+        "home_team": "DEN",
+        "away_team": "LAC",
+        "week": 18
+    },
+    {
+        "home_team": "GB",
+        "away_team": "DET",
+        "week": 18
+    },
+    {
+        "home_team": "HOU",
+        "away_team": "TEN",
+        "week": 18
+    },
+    {
+        "home_team": "IND",
+        "away_team": "JAX",
+        "week": 18
+    },
+    {
+        "home_team": "KC",
+        "away_team": "LV",
+        "week": 18
+    },
+    {
+        "home_team": "MIN",
+        "away_team": "CHI",
+        "week": 18
+    },
+    {
+        "home_team": "NE",
+        "away_team": "MIA",
+        "week": 18
+    },
+    {
+        "home_team": "NO",
+        "away_team": "TB",
+        "week": 18
+    },
+    {
+        "home_team": "NYG",
+        "away_team": "PHI",
+        "week": 18
+    },
+    {
+        "home_team": "LAR",
+        "away_team": "SEA",
+        "week": 18
+    },
+    {
+        "home_team": "WAS",
+        "away_team": "DAL",
+        "week": 18
+    }
+]
