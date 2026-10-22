@@ -12,5 +12,8 @@
   },
   // Cache of trimmed Sleeper responses (the "fantabolti-sleeper-cache" namespace)
   "kv_namespaces": [{ "binding": "SLEEPER_CACHE", "id": "418cef277c2240afa29e48c4bc4ef5ff" }],
+  // Once a day the Worker asks Workers Builds to rebuild, which refreshes the player list and
+  // injuries (the DEPLOY_HOOK_URL secret; see the README)
+  "triggers": { "crons": ["0 12 * * *"] },
   "observability": { "enabled": true }
 }

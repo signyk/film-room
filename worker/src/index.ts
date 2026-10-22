@@ -39,4 +39,14 @@ export default {
       return error("Could not reach Sleeper", 502);
     }
   },
+
+  // The daily rebuild: Sleeper asks that its player list is fetched at most once a day
+  async scheduled(_controller, env, ctx) {
+    if (!env.DEPLOY_HOOK_URL) return;
+    ctx.waitUntil(
+      fetch(env.DEPLOY_HOOK_URL, { method: "POST" }).then((r) => {
+        if (!r.ok) console.error(`Deploy hook answered ${r.status}`);
+      }),
+    );
+  },
 } satisfies ExportedHandler<Env>;

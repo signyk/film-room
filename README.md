@@ -14,7 +14,7 @@ It runs on a Cloudflare Worker on the free plan:
   last good copy is served.
 - **The static data** (`ff/`, Python) is what changes rarely: the player list (Sleeper asks that
   `/players/nfl` is fetched at most once a day), the schedule, and the finished 2024 and 2025 seasons.
-  GitHub Actions rebuilds it daily and on every push to `main`, then deploys.
+  Cloudflare rebuilds it on every push to `main` and once a day, then deploys.
 
 ```
 shared/        scoring and stat columns used by both the Worker and the dashboard
@@ -40,16 +40,20 @@ npm test
 
 ## Deploy
 
-One-time setup:
+The dashboard runs at https://fantabolti.signy-kristin8.workers.dev. Cloudflare builds and deploys it
+from GitHub (Workers Builds), so there is nothing to run by hand. One-time setup in the Cloudflare
+dashboard, under Workers & Pages → fantabolti → Settings → Builds:
 
-1. Create a free Cloudflare account and run `npx wrangler login`.
-2. `npm run deploy`. Wrangler creates the `SLEEPER_CACHE` KV namespace on the first deploy, and the
-   dashboard goes live at `https://fantabolti.<your-subdomain>.workers.dev`.
-3. For automatic deploys, add two secrets to the GitHub repository: `CLOUDFLARE_API_TOKEN` (create it
-   from the "Edit Cloudflare Workers" template) and `CLOUDFLARE_ACCOUNT_ID`.
+1. **Connect** the `signyk/FantasyNFL` repository, with `main` as the production branch.
+2. **Build command:** `npm run build:cloudflare` (fetches the player list from Sleeper, builds the
+   static data, runs the tests and builds the dashboard). **Deploy command:**
+   `npx wrangler deploy --config dist/fantabolti/wrangler.json`.
+3. **Daily refresh:** under Deploy Hooks, create a hook for `main` and copy its URL. Then run
+   `npx wrangler secret put DEPLOY_HOOK_URL` and paste it. The Worker's daily cron calls the hook, which
+   rebuilds with today's injuries and team changes.
 
-After that, `.github/workflows/deploy.yml` tests, builds and deploys on every push to `main` and once a
-day, which refreshes injuries and team changes.
+Every push to `main` then deploys. To deploy from your own machine instead, run `npx wrangler login`
+once and then `npm run deploy`.
 
 ### Free plan limits
 
@@ -60,7 +64,7 @@ day, which refreshes injuries and team changes.
 | 1,000 KV writes a day | About 120 on a busy game day |
 
 If `npx wrangler tail` ever shows requests stopped for exceeding CPU (error 1102), move the trimming
-into the GitHub Actions job and have the Worker only read from KV. The API shape stays the same.
+into the build and have the Worker only read from KV. The API shape stays the same.
 
 ## A new season
 

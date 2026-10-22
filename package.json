@@ -10,7 +10,8 @@
     "preview": "npm run build && vite preview",
     "test": "vitest run",
     "deploy": "npm run build && wrangler deploy --config dist/fantabolti/wrangler.json",
-    "season": "tsx scripts/fetch-season.ts"
+    "season": "tsx scripts/fetch-season.ts",
+    "build:cloudflare": "pip install --quiet uv && uv run python -m ff.build_data && npm test && npm run build"
   },
   "dependencies": {
     "react": "^19.3.1",

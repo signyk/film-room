@@ -14,6 +14,8 @@ const API = "https://api.sleeper.app/v1";
 export interface Env {
   ASSETS: Fetcher;
   SLEEPER_CACHE: KVNamespace;
+  /** Workers Builds deploy hook; calling it rebuilds the static data */
+  DEPLOY_HOOK_URL?: string;
 }
 
 interface CacheMeta {
