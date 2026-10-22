@@ -1,10 +1,22 @@
-uv.lock
-.Rproj.user
+# Python
 __pycache__/
-.Rhistory
-.DS_Store
-rsconnect/
-ff.log
-update_dashboard.R
-renv.lock
+.venv/
+uv.lock
 .python-version
+ff.log
+
+# Node, Vite and Wrangler
+node_modules/
+dist/
+.wrangler/
+web/.wrangler/
+.dev.vars*
+
+# Built by ff/build_data.py (npm run data); data/players.json is its cache of Sleeper's player list
+web/public/data/
+data/players.json
+
+# Design inspector output
+.taste-skill/
+
+.DS_Store

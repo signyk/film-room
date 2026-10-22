@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "fantabolti",
+  "main": "worker/src/index.ts",
+  "compatibility_date": "2026-10-01",
+  // The dashboard is static; only /api/* runs the Worker, so page loads cost no Worker requests.
+  // The Cloudflare Vite plugin fills in the assets directory when it builds.
+  "assets": {
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  // Cache of trimmed Sleeper responses (the "fantabolti-sleeper-cache" namespace)
+  "kv_namespaces": [{ "binding": "SLEEPER_CACHE", "id": "418cef277c2240afa29e48c4bc4ef5ff" }],
+  "observability": { "enabled": true }
+}
