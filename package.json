@@ -9,7 +9,7 @@
     "build": "tsc -p web && tsc -p worker && vite build",
     "preview": "npm run build && vite preview",
     "test": "vitest run",
-    "deploy": "npm run build && wrangler deploy --config dist/fantabolti/wrangler.json",
+    "deploy": "npm run build && wrangler deploy --config dist/film_room/wrangler.json",
     "season": "tsx scripts/fetch-season.ts",
     "build:cloudflare": "pip install --quiet uv && uv run python -m ff.build_data && npm test && npm run build"
   },

@@ -4,7 +4,7 @@ A fantasy football research dashboard built on [Sleeper](https://docs.sleeper.co
 consistently players score, week-by-week player logs, start/sit comparisons and the points each defense
 allows by position. Seasons 2018 to today.
 
-Live at https://fantabolti.signy-kristin8.workers.dev
+Live at https://film-room.signy-kristin8.workers.dev
 
 ## How it works
 
@@ -28,7 +28,7 @@ npm test
 ## Deployment
 
 Cloudflare Workers Builds deploys every push to `main`, with the build command `npm run build:cloudflare`
-and the deploy command `npx wrangler deploy --config dist/fantabolti/wrangler.json`.
+and the deploy command `npx wrangler deploy --config dist/film_room/wrangler.json`.
 
 A daily cron rebuilds the site to pick up injuries and roster moves. It calls the Workers Builds deploy hook
 stored in the `DEPLOY_HOOK_URL` secret.
