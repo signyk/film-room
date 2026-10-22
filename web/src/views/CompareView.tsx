@@ -16,7 +16,6 @@ interface Props {
 }
 
 export function CompareView({ season, meta, a, b, onChange, openPlayer }: Props) {
-  // One stat explanation open at a time, across both cards
   const [openHelp, setOpenHelp] = useState<string | null>(null);
   const matchups = positionMatchups(season);
   const result = compare(comparePlayer(season, a, matchups), comparePlayer(season, b, matchups));

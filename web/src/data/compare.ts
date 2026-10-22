@@ -1,4 +1,3 @@
-// Start/sit comparison of two players for the current week, ported from the R dashboard.
 import { dependability, mean, present, rankDesc, sum } from "./stats";
 import type { PlayerInfo, PlayerWeek, Position, Season } from "./types";
 
@@ -51,11 +50,9 @@ export interface Matchup {
   opponent: string;
   position: Position;
   allowed: number;
-  /** 1 is the easiest matchup: the defense that gives up the most */
   rank: number;
 }
 
-/** Average points each defense has allowed per game to each position in the played weeks. */
 export function positionMatchups(season: Season): Map<string, Matchup> {
   const games = new Map<string, { opponent: string; position: Position; points: number }>();
   for (const r of season.rows) {
@@ -79,10 +76,8 @@ export function positionMatchups(season: Season): Map<string, Matchup> {
 
 export interface CompareStat {
   stat: StatName;
-  /** The number compared; null when there is nothing to compare */
   value: number | null;
   display: string;
-  /** A second, quieter line under the value */
   note?: string;
   better: "higher" | "lower" | "none";
 }
@@ -160,7 +155,7 @@ export function comparePlayer(season: Season, player: PlayerInfo, matchups: Map<
       better: "none",
     },
     {
-      // Compared on rank so players at different positions (e.g. RB vs WR) are comparable
+      // Ranked, so players at different positions can be compared
       stat: "Matchup: points allowed",
       value: matchup?.rank ?? null,
       display: matchup ? `${ordinal(matchup.rank)} easiest` : "–",
@@ -193,7 +188,6 @@ export interface Comparison {
   rows: { stat: CompareStat; a: CompareStat; b: CompareStat; winner: Side }[];
   wins: { a: number; b: number };
   verdict: Side;
-  /** Why the verdict went that way, in a few words */
   reason: string;
 }
 
@@ -211,7 +205,6 @@ export function compare(a: ComparePlayer, b: ComparePlayer): Comparison {
   });
   const wins = { a: rows.filter((r) => r.winner === "a").length, b: rows.filter((r) => r.winner === "b").length };
 
-  // A player on bye or ruled out (Out, IR, ...) never gets the start over one who can play
   const outA = a.onBye || a.injuryLevel >= 3;
   const outB = b.onBye || b.injuryLevel >= 3;
   const why = (p: ComparePlayer) => (p.onBye ? "is on bye" : `is ${(INJURY_LABELS[p.player.injury!] ?? p.player.injury)?.toLowerCase()}`);

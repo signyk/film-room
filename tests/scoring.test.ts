@@ -1,5 +1,4 @@
-// The TypeScript scoring must give the same points as the old Python pipeline. The fixture holds the
-// raw Sleeper stats for 2026 weeks 1–3 next to the points the Python code wrote to the weekly CSV.
+// Raw Sleeper stats for 2026 weeks 1–3, with the points the original Python scoring gave them
 import { readFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { describe, expect, it } from "vitest";

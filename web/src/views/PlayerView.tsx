@@ -8,7 +8,6 @@ import { PlayerSearch } from "../components/Controls";
 import { Card, Empty, Header } from "../components/Layout";
 import type { ViewProps } from "./shared";
 
-/** Stat columns shown per position, most relevant first (from the old dashboard) */
 const PASSING = ["Passing ATT", "Passing CMP", "Passing YDS", "Passing TD", "Passing 2-PT", "Passing INT", "Passing Sack"];
 const RUSHING = ["Rushing ATT", "Rushing YDS", "Rushing TD", "Rushing 2-PT"];
 const RECEIVING = ["Receiving TGT", "Receptions", "Receiving YDS", "Receiving TD", "Receiving 2-PT"];

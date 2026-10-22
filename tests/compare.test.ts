@@ -1,6 +1,4 @@
-// The ported analysis must give the same answers as the R dashboard did. The fixtures were made by
-// running the R code (before it was removed) on data/2026 and data/2025 at week 7; the seasons are
-// the exports ff/build_data.py made of those CSV files.
+// Expected values come from the original R dashboard, run on the 2025 and 2026 data at week 7
 import { readFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { beforeAll, describe, expect, it, vi } from "vitest";

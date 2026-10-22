@@ -13,7 +13,6 @@ export interface WeekBar {
 
 const M = { top: 16, right: 0, bottom: 52, left: 40 };
 
-/** Points (filled, in the team's hue) beside the projection (outlined) for each week */
 export function WeeklyColumns({ weeks, hue }: { weeks: WeekBar[]; hue: string }) {
   const [ref, width] = useWidth<HTMLDivElement>();
   const [hover, setHover] = useState<WeekBar | null>(null);

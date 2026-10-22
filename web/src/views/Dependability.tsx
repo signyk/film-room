@@ -9,7 +9,6 @@ import { PlayerLink, type ViewProps } from "./shared";
 
 const PHONE = "(max-width: 860px)";
 
-/** Follows a media query, so the default view can differ between phone and desktop */
 function useMatches(query: string): boolean {
   const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
   useEffect(() => {
@@ -22,7 +21,6 @@ function useMatches(query: string): boolean {
 }
 
 export function Dependability({ season, meta, filters, openPlayer }: ViewProps) {
-  // The table reads better on a phone, the chart on a wide screen; a choice made here sticks
   const phone = useMatches(PHONE);
   const [chosen, setChosen] = useState<"chart" | "table" | null>(null);
   const mode = chosen ?? (phone ? "table" : "chart");

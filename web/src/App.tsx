@@ -20,7 +20,6 @@ import { TopScorers } from "./views/TopScorers";
 const DEFAULT_POSITIONS: Position[] = ["QB", "RB", "WR", "TE"];
 const DEFAULT_PLAYER = "Lamar Jackson";
 
-/** Which filters each view uses; the rest are hidden there */
 const VIEW_FILTERS: Record<View, { weeks: boolean; positions: boolean; teams: boolean; points: boolean; n: boolean }> = {
   top: { weeks: true, positions: true, teams: true, points: true, n: true },
   dependability: { weeks: true, positions: true, teams: true, points: true, n: true },
@@ -90,7 +89,6 @@ export function App() {
 
   const findPlayer = (name: string | undefined) => (name ? season?.players.find((p) => p.name === name) : undefined);
 
-  // On a phone the sidebar becomes a sheet that slides up from the bottom
   const [filtersOpen, setFiltersOpen] = useState(false);
   useEffect(() => {
     if (!filtersOpen) return;
@@ -231,7 +229,6 @@ export function App() {
       case "compare": {
         sidebar = null;
         filterSummary = null;
-        // Default to the two highest projected players this week
         const byProjection = season.rows
           .filter((r) => r.week === season.currentWeek && r.projection !== null)
           .sort((x, y) => y.projection! - x.projection!)

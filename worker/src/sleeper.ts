@@ -14,7 +14,6 @@ const API = "https://api.sleeper.app/v1";
 export interface Env {
   ASSETS: Fetcher;
   SLEEPER_CACHE: KVNamespace;
-  /** Workers Builds deploy hook; calling it rebuilds the static data */
   DEPLOY_HOOK_URL?: string;
 }
 
@@ -22,7 +21,7 @@ interface CacheMeta {
   fetchedAt: number;
 }
 
-// Kept for 30 days so a stale copy can be served when Sleeper is down
+// Kept long after it goes stale so it can be served when Sleeper is down
 const KV_EXPIRATION = 30 * 24 * 3600;
 
 async function sleeperJson<T>(path: string, cacheTtl: number): Promise<T> {
@@ -31,10 +30,6 @@ async function sleeperJson<T>(path: string, cacheTtl: number): Promise<T> {
   return response.json<T>();
 }
 
-/**
- * Returns the cached value while it is younger than maxAge seconds, otherwise loads a fresh one.
- * A failed load falls back to the stale copy, so the dashboard keeps working when Sleeper is down.
- */
 async function cached(
   env: Env,
   ctx: ExecutionContext,
@@ -63,7 +58,6 @@ async function cached(
 export async function getState(env: Env, ctx: ExecutionContext): Promise<StateResponse> {
   const { body } = await cached(env, ctx, "state", 3600, async () => {
     const state = await sleeperJson<{ season: string; week: number; season_type: string }>("state/nfl", 600);
-    // Out of the regular season Sleeper's week is 0 (preseason) or counts the playoffs
     const week = state.season_type === "regular" ? state.week : state.season_type === "pre" ? 1 : 19;
     return JSON.stringify({
       season: Number(state.season),
@@ -75,23 +69,17 @@ export async function getState(env: Env, ctx: ExecutionContext): Promise<StateRe
   return JSON.parse(body);
 }
 
-/**
- * How long a week's data stays fresh, given the current week. Worst case this is about 120 KV
- * writes a day (free plan: 1,000): state hourly, the current week every 30 min on game days, every
- * other open week four times a day.
- */
 export function weekMaxAge(season: number, week: number, state: StateResponse, now = new Date()): number {
   const hour = 3600;
-  if (season < state.season || week < state.week - 1) return 7 * 24 * hour; // settled
-  if (week !== state.week) return 6 * hour; // last week's stat corrections, or projections for later weeks
-  // This week's projections move with injury news, most of all on game days (Thu, Sun, Mon in the US)
+  if (season < state.season || week < state.week - 1) return 7 * 24 * hour;
+  if (week !== state.week) return 6 * hour;
+  // Projections move most on game days: Thursday, Sunday and Monday in the US
   const usDay = new Date(now.getTime() - 5 * hour * 1000).getUTCDay();
   return [0, 1, 4].includes(usDay) ? hour / 2 : 2 * hour;
 }
 
 let playersPromise: Promise<Map<string, Position>> | null = null;
 
-/** The fantasy relevant players, from the static players.json built daily by CI. */
 function relevantPlayers(env: Env, origin: string): Promise<Map<string, Position>> {
   playersPromise ??= env.ASSETS.fetch(new URL("/data/players.json", origin))
     .then((r) => {
@@ -109,7 +97,6 @@ function relevantPlayers(env: Env, origin: string): Promise<Map<string, Position
 const FIELD_COLUMN = new Map<string, number>();
 STAT_COLUMNS.forEach((column, i) => column.fields.forEach((field) => FIELD_COLUMN.set(field, i)));
 
-/** The dashboard's stat columns, walking the player's own fields once (it is the hot loop) */
 function statRow(stats: SleeperStats): number[] {
   const row = new Array<number>(STAT_COLUMNS.length).fill(0);
   for (const field in stats) {
@@ -121,11 +108,8 @@ function statRow(stats: SleeperStats): number[] {
 
 export type Part = "stats" | "projections";
 
-/**
- * One week's stats or projections from Sleeper, trimmed to the fantasy relevant players.
- * Each part is its own request so a Worker invocation parses one ~0.6 MB file and stays well
- * inside the free plan's 10 ms of CPU.
- */
+// Stats and projections are separate requests so each parses one ~0.6 MB file, within the free
+// plan's 10 ms of CPU
 export async function getWeekPart(
   env: Env,
   ctx: ExecutionContext,
@@ -135,7 +119,6 @@ export async function getWeekPart(
   week: number,
 ): Promise<{ body: string; maxAge: number; stale: boolean } | null> {
   const state = await getState(env, ctx);
-  // Stats exist only for weeks that are played
   if (part === "stats" && season === state.season && week >= state.week) return null;
   if (season > state.season) return null;
   const maxAge = weekMaxAge(season, week, state);
@@ -149,7 +132,6 @@ export async function getWeekPart(
 
     if (part === "projections") {
       const out: Record<string, number> = {};
-      // A listed player without a projection counts as projected 0, as in the old pipeline
       for (const id of players.keys()) if (raw[id]) out[id] = raw[id].pts_ppr ?? 0;
       return JSON.stringify({ season, week, fetchedAt, players: out } satisfies ProjectionsResponse);
     }

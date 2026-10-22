@@ -1,5 +1,3 @@
-// Stat columns shown in the dashboard, in the order of the weekly CSV files, with the Sleeper
-// fields each one is summed from. Field names follow the aliases in ff/models.py (WeeklyStats).
 export const STAT_COLUMNS = [
   { label: "FGA", fields: ["fga"] },
   { label: "FGM", fields: ["fgm"] },
@@ -47,32 +45,25 @@ export const STAT_LABELS: readonly StatLabel[] = STAT_COLUMNS.map((c) => c.label
 export const POSITIONS = ["QB", "RB", "WR", "TE", "K", "DEF"] as const;
 export type Position = (typeof POSITIONS)[number];
 
-/** Raw Sleeper stats for one player and week: field name to value. */
 export type SleeperStats = Record<string, number | undefined>;
 
-/** /api/stats/:season/:week — only for weeks that are played */
 export interface StatsResponse {
   season: number;
   week: number;
   fetchedAt: string;
-  /** Labels of the stats arrays, so a new column never shifts old cached data */
   statColumns: readonly string[];
-  /** Player id to [fantasy points, stats in statColumns order] */
   players: Record<string, [points: number, stats: number[]]>;
 }
 
-/** /api/projections/:season/:week */
 export interface ProjectionsResponse {
   season: number;
   week: number;
   fetchedAt: string;
-  /** Player id to projected fantasy points */
   players: Record<string, number>;
 }
 
 export interface StateResponse {
   season: number;
-  /** The week being played or next to be played; weeks before it are complete. */
   week: number;
   seasonType: string;
   fetchedAt: string;

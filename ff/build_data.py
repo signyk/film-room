@@ -1,18 +1,4 @@
-"""Build the static data files the dashboard ships with.
-
-Everything that changes rarely is prepared here, ahead of time, and served as a static asset:
-
-- players.json: the fantasy relevant players with team, position and injury status. Sleeper asks
-  that /players/nfl (about 16 MB) is fetched at most once a day, so CI runs this daily.
-- schedule/<season>.json: who plays whom each week of the live season.
-- history/<season>.json: finished seasons, exported from data/<season>/weekly_fantasy_points.csv.
-- meta.json: seasons, teams, divisions and team colours.
-
-Weekly stats and projections for the live season are not built here: the Cloudflare Worker fetches
-them from Sleeper on demand and caches them.
-
-Run from the repository root:  uv run python -m ff.build_data [--offline]
-"""
+"""Builds web/public/data: the player list, the live season's schedule and finished seasons."""
 
 import argparse
 import csv
@@ -29,13 +15,10 @@ from ff.logger import logger
 from ff.service.callers import load_players
 
 OUT_DIR = "web/public/data"
-# Finished seasons with a CSV in data/<season>/. 2018–2023 come from scripts/fetch-season.ts;
-# Sleeper has no projections before 2018.
 HISTORY_SEASONS = list(range(2018, 2026))
 STATE_URL = "https://api.sleeper.app/v1/state/nfl"
 SCHEDULE_URL = "https://api.sleeper.com/schedule/nfl/regular/{season}"
 
-# Columns of the weekly CSV files that are not stats
 ID_COLUMNS = [
     "Player",
     "Position",
@@ -46,7 +29,6 @@ ID_COLUMNS = [
     "Fantasy Points",
     "Projection",
 ]
-# Older files split long field goals in two, 2024 has one column. The dashboard shows one.
 FGM_50_PARTS = ["FGM 50-59", "FGM 60+"]
 
 
@@ -87,7 +69,6 @@ def build_players(offline: bool) -> None:
 
 
 def build_schedule(season: int, offline: bool) -> None:
-    """The schedule changes once a season, so it is fetched only when it is not on disk yet."""
     path = f"data/{season}/schedule.json"
     if not os.path.exists(path):
         if offline:
@@ -122,7 +103,6 @@ def number(value: str) -> Optional[float]:
 
 
 def build_history(season: int) -> None:
-    """A finished season in a compact form: one list of players and one row per player and week."""
     with open(f"data/{season}/weekly_fantasy_points.csv", newline="") as f:
         reader = csv.DictReader(f)
         header = reader.fieldnames or []

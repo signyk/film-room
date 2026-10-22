@@ -10,7 +10,6 @@ async function getJson<T>(url: string): Promise<{ data: T; stale: boolean }> {
 export const loadMeta = () => getJson<Meta>("/data/meta.json").then((r) => r.data);
 export const loadState = () => getJson<StateResponse>("/api/state").then((r) => r.data);
 
-/** Fantasy points are blank, not 0, for a player with neither points nor a projection (as in the old dashboard). */
 function points(points: number | null, projection: number | null): number | null {
   return points === 0 && (projection === 0 || projection === null) ? null : points;
 }
@@ -83,7 +82,6 @@ export async function loadLiveSeason(season: number, state: StateResponse): Prom
   const rows: PlayerWeek[] = [];
   for (const { data: proj } of projections) {
     const weekStats = statsByWeek.get(proj.week);
-    // Cached stats may predate a new column; map them onto today's columns by label
     const columnMap = weekStats?.statColumns.map((label) => STAT_LABELS.indexOf(label as (typeof STAT_LABELS)[number]));
     for (const player of players) {
       const entry = weekStats?.players[player.id];

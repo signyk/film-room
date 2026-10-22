@@ -1,12 +1,4 @@
-// Builds data/<season>/weekly_fantasy_points.csv for a finished season from Sleeper, in the same
-// format as the other seasons, so ff/build_data.py can export it for the dashboard.
-//
-//   npx tsx scripts/fetch-season.ts 2018 2019 ...
-//
-// Unlike the live season, each player keeps the team they played for that season (the last team
-// they had stats for), and each week's opponent is the one they actually faced. Old team codes
-// are mapped to today's franchise (OAK → LV, SD → LAC, STL → LAR) so colours and names line up.
-// Sleeper has projections from 2018; earlier seasons would have points only.
+// Writes data/<season>/weekly_fantasy_points.csv for finished seasons: npm run season -- 2023 2024
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fantasyPoints } from "../shared/scoring";
 import { POSITIONS, STAT_COLUMNS, type Position, type SleeperStats } from "../shared/stats";
@@ -39,7 +31,6 @@ async function get<T>(path: string): Promise<T> {
 interface Player {
   name: string;
   position: Position;
-  /** Team per week they had stats; the season team is the last of these */
   teams: Map<number, string>;
 }
 
@@ -96,7 +87,6 @@ async function fetchSeason(season: number): Promise<number> {
   const lines = [header.join(",")];
   let kept = 0;
   for (const [id, p] of players) {
-    // Players with neither a game nor a projection all season add nothing
     const projected = projByWeek.some((m) => m.has(id));
     if (!p.teams.size && !projected) continue;
     const seasonTeam = p.teams.size ? [...p.teams.entries()].sort((a, b) => b[0] - a[0])[0][1] : p.position === "DEF" ? team(id) : null;

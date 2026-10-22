@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 
-/** Round ticks (steps of 1, 2, 2.5 or 5 × 10^n) whose top sits above the largest value */
 export function ticks(min: number, max: number, count = 4): number[] {
   if (max === min) max = min + 1;
   const raw = (max - min) / count;
@@ -17,7 +16,6 @@ export function ticks(min: number, max: number, count = 4): number[] {
 export const linear = (d0: number, d1: number, r0: number, r1: number) => (v: number) =>
   r0 + ((v - d0) / (d1 - d0 || 1)) * (r1 - r0);
 
-/** Width of an element, kept up to date */
 export function useWidth<T extends HTMLElement>(): [React.RefObject<T | null>, number] {
   const ref = useRef<T>(null);
   const [width, setWidth] = useState(0);

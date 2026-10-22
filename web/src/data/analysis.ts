@@ -52,7 +52,6 @@ export function topPlayers(summary: PlayerSummary[], pointType: PointType, n: nu
   return [...summary].sort((a, b) => b[pointType] - a[pointType] || a.player.name.localeCompare(b.player.name)).slice(0, n);
 }
 
-/** Rank of every player within their position */
 export function positionRanks(summary: PlayerSummary[], pointType: PointType): Map<PlayerInfo, { rank: number; of: number }> {
   const out = new Map<PlayerInfo, { rank: number; of: number }>();
   const byPosition = Map.groupBy(summary, (s) => s.player.position);
@@ -72,10 +71,6 @@ export interface OpponentCell {
   "Average Projected Points": number;
 }
 
-/**
- * Points each defense gave up to each position, summed per game and then totalled or averaged over
- * the games. Weeks not played yet count for projections only.
- */
 export function opponentTable(rows: PlayerWeek[], season: Season): OpponentCell[] {
   const games = new Map<string, { opponent: string; position: Position; week: number; points: number; projection: number }>();
   for (const r of rows) {
@@ -101,7 +96,6 @@ export function opponentTable(rows: PlayerWeek[], season: Season): OpponentCell[
   });
 }
 
-/** Weeks that are played and weeks still to come */
 export function splitWeeks(season: Season): { past: number[]; future: number[] } {
   return {
     past: season.weeks.filter((w) => w < season.currentWeek),

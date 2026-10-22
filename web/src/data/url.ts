@@ -1,4 +1,3 @@
-// The view and every filter live in the URL, so any view can be bookmarked or shared.
 import { useCallback, useEffect, useState } from "react";
 import { POSITIONS } from "../../../shared/stats";
 import type { PointType, Position } from "./types";

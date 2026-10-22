@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <title>Film Room</title>
-  <!-- A screen with a football on it -->
   <rect x="5" y="9" width="54" height="38" rx="9" fill="#011224" stroke="#ffffff" stroke-width="4"/>
   <path d="M17 28c6-10.5 24-10.5 30 0-6 10.5-24 10.5-30 0Z" fill="#e8414d"/>
   <path d="M26 28h12" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round"/>

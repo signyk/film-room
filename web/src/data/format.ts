@@ -2,7 +2,6 @@ import type { PointType } from "./types";
 
 const nf1 = new Intl.NumberFormat("en", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
-/** Fantasy points, one decimal, true minus sign */
 export const pts = (x: number | null | undefined): string =>
   x === null || x === undefined || Number.isNaN(x) ? "–" : nf1.format(x).replace("-", "−");
 
@@ -11,7 +10,6 @@ export const pct = (x: number | null | undefined): string =>
 
 export const int = (x: number | null | undefined): string => (x === null || x === undefined ? "–" : String(Math.round(x)));
 
-/** "1–6", "1–4, 6, 9–10" */
 export function weekRanges(weeks: number[]): string {
   const sorted = [...weeks].sort((a, b) => a - b);
   const parts: string[] = [];
@@ -49,7 +47,6 @@ function hsl(hex: string): [number, number, number] {
   return [Math.round(h * 360), Math.round(s * 100), l];
 }
 
-/** A team colour lifted so it reads as a mark on the navy ground */
 export function teamHue(hex: string | null | undefined): string {
   if (!hex) return "#9fb3c8";
   if (!hex.startsWith("#")) return hex;
@@ -57,7 +54,6 @@ export function teamHue(hex: string | null | undefined): string {
   return `hsl(${h} ${s}% ${Math.round(Math.max(l, 0.58) * 100)}%)`;
 }
 
-/** A team colour deep enough to carry white text, for filled boxes */
 export function teamFill(hex: string | null | undefined): string {
   if (!hex) return "#123a66";
   const [h, s, l] = hsl(hex);
@@ -74,7 +70,6 @@ export function timeAgo(iso: string | null): string {
   return new Date(iso).toLocaleDateString("en", { month: "short", day: "numeric" });
 }
 
-/** Long names keep the last name whole and shorten the first: "Jaxon Smith-Njigba" → "J. Smith-Njigba" */
 export function shortName(name: string, max = 14): string {
   if (name.length <= max) return name;
   const [first, ...rest] = name.split(" ");

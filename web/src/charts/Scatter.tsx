@@ -19,7 +19,6 @@ interface Props {
 
 const M = { top: 16, right: 12, bottom: 48, left: 48 };
 
-/** Dependability (x, 0–100%) against points (y). The best players sit top right. */
 export function Scatter({ points, yLabel, onSelect }: Props) {
   const [ref, width] = useWidth<HTMLDivElement>();
   const [hover, setHover] = useState<ScatterPoint | null>(null);
@@ -31,7 +30,6 @@ export function Scatter({ points, yLabel, onSelect }: Props) {
   const x = linear(0, 1, M.left, width - M.right);
   const y = linear(yTicks[0], yTicks.at(-1)!, height - M.bottom, M.top);
 
-  // Label the strongest points first and skip any label that would overlap one already placed
   const labels = useMemo(() => {
     if (!width) return [];
     const placed: { x0: number; x1: number; y0: number; y1: number }[] = [];

@@ -27,7 +27,6 @@ export default {
         if (week < 1 || week > REGULAR_SEASON_WEEKS) return error("Unknown week", 404);
         const result = await getWeekPart(env, ctx, url.origin, match[1] as Part, season, week);
         if (!result) return error("Not played yet", 404);
-        // A stale copy is served once and retried soon
         const response = json(result.body, result.stale ? 60 : result.maxAge);
         if (result.stale) response.headers.set("x-stale", "1");
         return response;
@@ -40,7 +39,7 @@ export default {
     }
   },
 
-  // The daily rebuild: Sleeper asks that its player list is fetched at most once a day
+  // Daily rebuild, which refreshes the player list (Sleeper asks for at most one fetch a day)
   async scheduled(_controller, env, ctx) {
     if (!env.DEPLOY_HOOK_URL) return;
     ctx.waitUntil(

@@ -1,4 +1,3 @@
-// League scoring, ported from get_fantasy_points in ff/utils.py.
 import type { Position, SleeperStats } from "./stats";
 
 function pointsAllowedPoints(allowed: number): number {
@@ -11,7 +10,7 @@ function pointsAllowedPoints(allowed: number): number {
   return -4;
 }
 
-/** Rounds to one decimal the way Python's round() does: exact halves go to the even digit. */
+// Halves round to the even digit, like Python's round(), to match the historical data
 export function roundOneDecimal(x: number): number {
   const scaled = x * 10;
   const floor = Math.floor(scaled);
@@ -19,7 +18,7 @@ export function roundOneDecimal(x: number): number {
   let n: number;
   if (Math.abs(diff - 0.5) < 1e-9) n = floor % 2 === 0 ? floor : floor + 1;
   else n = Math.round(scaled);
-  return n / 10 + 0; // + 0 turns -0 into 0
+  return n / 10 + 0;
 }
 
 export function fantasyPoints(s: SleeperStats, position: Position): number {

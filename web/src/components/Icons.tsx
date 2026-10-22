@@ -1,4 +1,3 @@
-// 18px outline icons, 1.5px stroke, one set
 import type { View } from "../data/url";
 
 const paths: Record<View | "chevron" | "check" | "info" | "filter", string> = {

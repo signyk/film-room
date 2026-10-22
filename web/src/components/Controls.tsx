@@ -4,7 +4,6 @@ import { teamFill, weeksLabel } from "../data/format";
 import type { Meta, PlayerInfo, PointType, Position } from "../data/types";
 import { Icon } from "./Icons";
 
-/** A button that opens a floating panel; closes on outside click or Escape */
 export function Dropdown(props: {
   label: ReactNode;
   children: (close: () => void) => ReactNode;
@@ -291,7 +290,6 @@ export function Stepper({ label, value, min, max, onChange }: { label: string; v
   );
 }
 
-/** Searchable player picker */
 export function PlayerSearch(props: { players: PlayerInfo[]; value: PlayerInfo | null; onChange: (p: PlayerInfo) => void; label: string }) {
   const { players, value, onChange, label } = props;
   const [query, setQuery] = useState("");
