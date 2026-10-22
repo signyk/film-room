@@ -1,7 +1,7 @@
-# Fantabolti
+# Film Room
 
-Fantasy football research dashboard for the Fantabolti league: top scorers, dependability, a player's
-week-by-week log, start/sit comparison and the points each defense allows by position. Data comes from
+Fantasy football research dashboard: top scorers, dependability, a player's week-by-week log, start/sit
+comparison and the points each defense allows by position. Data comes from
 [Sleeper](https://docs.sleeper.com/).
 
 It runs on a Cloudflare Worker on the free plan:
@@ -42,7 +42,8 @@ npm test
 
 The dashboard runs at https://fantabolti.signy-kristin8.workers.dev. Cloudflare builds and deploys it
 from GitHub (Workers Builds), so there is nothing to run by hand. One-time setup in the Cloudflare
-dashboard, under Workers & Pages → fantabolti → Settings → Builds:
+dashboard, under Workers & Pages → fantabolti (the Worker keeps its original name, which is in the
+address) → Settings → Builds:
 
 1. **Connect** the `signyk/FantasyNFL` repository, with `main` as the production branch.
 2. **Build command:** `npm run build:cloudflare` (fetches the player list from Sleeper, builds the

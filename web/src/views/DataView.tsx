@@ -52,7 +52,7 @@ export function DataView({ season, meta, filters, openPlayer }: ViewProps) {
 
   const download = () => {
     const url = URL.createObjectURL(new Blob([csv(rows)], { type: "text/csv" }));
-    const link = Object.assign(document.createElement("a"), { href: url, download: `fantabolti-${season.season}.csv` });
+    const link = Object.assign(document.createElement("a"), { href: url, download: `film-room-${season.season}.csv` });
     link.click();
     URL.revokeObjectURL(url);
   };

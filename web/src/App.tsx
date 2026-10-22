@@ -106,9 +106,9 @@ export function App() {
 
   const topbar = (filterSummary: string | null) => (
     <header className="topbar">
-      <a className="brand" href="/" aria-label="Fantabolti home">
-        <img src="/fantabolti.png" alt="" width={44} height={44} />
-        <span>Fantabolti</span>
+      <a className="brand" href="/" aria-label="Film Room home">
+        <img src="/mark.svg" alt="" width={44} height={44} />
+        <span>Film Room</span>
       </a>
       <nav className="tabs" aria-label="Views">
         {VIEWS.map((v) => (
@@ -260,7 +260,7 @@ export function App() {
   }
 
   useEffect(() => {
-    document.title = `${title} · Fantabolti`;
+    document.title = `${title} · Film Room`;
   }, [title]);
 
   return (
