@@ -1,0 +1,1669 @@
+{
+  "compare": [
+    {
+      "a": "Lamar Jackson",
+      "b": "Josh Allen",
+      "rows": [
+        {
+          "stat": "Projected points",
+          "better": "higher",
+          "value_a": 20.88,
+          "display_a": "20.9",
+          "value_b": 0,
+          "display_b": "0.0",
+          "winner": "a"
+        },
+        {
+          "stat": "Opponent",
+          "better": "none",
+          "value_a": null,
+          "display_a": "vs CIN",
+          "value_b": null,
+          "display_b": "BYE",
+          "winner": "tie"
+        },
+        {
+          "stat": "Matchup: points allowed",
+          "better": "lower",
+          "value_a": 17,
+          "display_a": "17.3 to QBs / game (17th easiest)",
+          "value_b": null,
+          "display_b": "–",
+          "winner": "tie"
+        },
+        {
+          "stat": "Average points",
+          "better": "higher",
+          "value_a": 20.025,
+          "display_a": "20.0",
+          "value_b": 27.55,
+          "display_b": "27.6",
+          "winner": "b"
+        },
+        {
+          "stat": "Total points",
+          "better": "higher",
+          "value_a": 80.1,
+          "display_a": "80.1",
+          "value_b": 165.3,
+          "display_b": "165.3",
+          "winner": "b"
+        },
+        {
+          "stat": "Last 3 games average",
+          "better": "higher",
+          "value_a": 18.3666666666667,
+          "display_a": "18.4",
+          "value_b": 23.1,
+          "display_b": "23.1",
+          "winner": "b"
+        },
+        {
+          "stat": "Points vs projection",
+          "better": "higher",
+          "value_a": -1.515,
+          "display_a": "-1.5",
+          "value_b": 4.94666666666667,
+          "display_b": "+4.9",
+          "winner": "b"
+        },
+        {
+          "stat": "Beat projection",
+          "better": "higher",
+          "value_a": 0.25,
+          "display_a": "25%",
+          "value_b": 0.5,
+          "display_b": "50%",
+          "winner": "b"
+        },
+        {
+          "stat": "Dependability",
+          "better": "higher",
+          "value_a": 0.808737337691758,
+          "display_a": "81%",
+          "value_b": 0.647051402877001,
+          "display_b": "65%",
+          "winner": "a"
+        },
+        {
+          "stat": "Worst game",
+          "better": "higher",
+          "value_a": 15.8,
+          "display_a": "15.8",
+          "value_b": 18.3,
+          "display_b": "18.3",
+          "winner": "b"
+        },
+        {
+          "stat": "Best game",
+          "better": "higher",
+          "value_a": 25,
+          "display_a": "25.0",
+          "value_b": 40.8,
+          "display_b": "40.8",
+          "winner": "b"
+        },
+        {
+          "stat": "Opportunities per game",
+          "better": "higher",
+          "value_a": 28.75,
+          "display_a": "28.8",
+          "value_b": 36.5,
+          "display_b": "36.5",
+          "winner": "b"
+        },
+        {
+          "stat": "Games played",
+          "better": "higher",
+          "value_a": 4,
+          "display_a": "4",
+          "value_b": 6,
+          "display_b": "6",
+          "winner": "b"
+        },
+        {
+          "stat": "Injury status",
+          "better": "lower",
+          "value_a": 1,
+          "display_a": "Questionable",
+          "value_b": 0,
+          "display_b": "Healthy",
+          "winner": "b"
+        }
+      ],
+      "verdict": "a"
+    },
+    {
+      "a": "Bijan Robinson",
+      "b": "Ja'Marr Chase",
+      "rows": [
+        {
+          "stat": "Projected points",
+          "better": "higher",
+          "value_a": 22.63,
+          "display_a": "22.6",
+          "value_b": 19.02,
+          "display_b": "19.0",
+          "winner": "a"
+        },
+        {
+          "stat": "Opponent",
+          "better": "none",
+          "value_a": null,
+          "display_a": "vs SF",
+          "value_b": null,
+          "display_b": "vs BAL",
+          "winner": "tie"
+        },
+        {
+          "stat": "Matchup: points allowed",
+          "better": "lower",
+          "value_a": 8,
+          "display_a": "23.8 to RBs / game (8th easiest)",
+          "value_b": 11,
+          "display_b": "33.8 to WRs / game (11th easiest)",
+          "winner": "a"
+        },
+        {
+          "stat": "Average points",
+          "better": "higher",
+          "value_a": 21.4166666666667,
+          "display_a": "21.4",
+          "value_b": 15.98,
+          "display_b": "16.0",
+          "winner": "a"
+        },
+        {
+          "stat": "Total points",
+          "better": "higher",
+          "value_a": 128.5,
+          "display_a": "128.5",
+          "value_b": 79.9,
+          "display_b": "79.9",
+          "winner": "a"
+        },
+        {
+          "stat": "Last 3 games average",
+          "better": "higher",
+          "value_a": 16.9333333333333,
+          "display_a": "16.9",
+          "value_b": 16.7333333333333,
+          "display_b": "16.7",
+          "winner": "a"
+        },
+        {
+          "stat": "Points vs projection",
+          "better": "higher",
+          "value_a": -1.01166666666667,
+          "display_a": "-1.0",
+          "value_b": 1.072,
+          "display_b": "+1.1",
+          "winner": "b"
+        },
+        {
+          "stat": "Beat projection",
+          "better": "higher",
+          "value_a": 0.5,
+          "display_a": "50%",
+          "value_b": 0.6,
+          "display_b": "60%",
+          "winner": "b"
+        },
+        {
+          "stat": "Dependability",
+          "better": "higher",
+          "value_a": 0.460637394822333,
+          "display_a": "46%",
+          "value_b": 0.320724993743253,
+          "display_b": "32%",
+          "winner": "a"
+        },
+        {
+          "stat": "Worst game",
+          "better": "higher",
+          "value_a": 7.3,
+          "display_a": "7.3",
+          "value_b": 3.2,
+          "display_b": "3.2",
+          "winner": "a"
+        },
+        {
+          "stat": "Best game",
+          "better": "higher",
+          "value_a": 35.3,
+          "display_a": "35.3",
+          "value_b": 26.5,
+          "display_b": "26.5",
+          "winner": "a"
+        },
+        {
+          "stat": "Opportunities per game",
+          "better": "higher",
+          "value_a": 23,
+          "display_a": "23.0",
+          "value_b": 7.6,
+          "display_b": "7.6",
+          "winner": "a"
+        },
+        {
+          "stat": "Games played",
+          "better": "higher",
+          "value_a": 6,
+          "display_a": "6",
+          "value_b": 5,
+          "display_b": "5",
+          "winner": "a"
+        },
+        {
+          "stat": "Injury status",
+          "better": "lower",
+          "value_a": 0,
+          "display_a": "Healthy",
+          "value_b": 0,
+          "display_b": "Healthy",
+          "winner": "tie"
+        }
+      ],
+      "verdict": "a"
+    },
+    {
+      "a": "Brandon Aubrey",
+      "b": "Cameron Dicker",
+      "rows": [
+        {
+          "stat": "Projected points",
+          "better": "higher",
+          "value_a": 8.88,
+          "display_a": "8.9",
+          "value_b": 0,
+          "display_b": "0.0",
+          "winner": "a"
+        },
+        {
+          "stat": "Opponent",
+          "better": "none",
+          "value_a": null,
+          "display_a": "vs PHI",
+          "value_b": null,
+          "display_b": "BYE",
+          "winner": "tie"
+        },
+        {
+          "stat": "Matchup: points allowed",
+          "better": "lower",
+          "value_a": 25,
+          "display_a": "6.5 to Ks / game (25th easiest)",
+          "value_b": null,
+          "display_b": "–",
+          "winner": "tie"
+        },
+        {
+          "stat": "Average points",
+          "better": "higher",
+          "value_a": 7.33333333333333,
+          "display_a": "7.3",
+          "value_b": 6,
+          "display_b": "6.0",
+          "winner": "a"
+        },
+        {
+          "stat": "Total points",
+          "better": "higher",
+          "value_a": 44,
+          "display_a": "44.0",
+          "value_b": 36,
+          "display_b": "36.0",
+          "winner": "a"
+        },
+        {
+          "stat": "Last 3 games average",
+          "better": "higher",
+          "value_a": 5.33333333333333,
+          "display_a": "5.3",
+          "value_b": 8,
+          "display_b": "8.0",
+          "winner": "b"
+        },
+        {
+          "stat": "Points vs projection",
+          "better": "higher",
+          "value_a": -1.37166666666667,
+          "display_a": "-1.4",
+          "value_b": -1.49666666666667,
+          "display_b": "-1.5",
+          "winner": "a"
+        },
+        {
+          "stat": "Beat projection",
+          "better": "higher",
+          "value_a": 0.5,
+          "display_a": "50%",
+          "value_b": 0.333333333333333,
+          "display_b": "33%",
+          "winner": "a"
+        },
+        {
+          "stat": "Dependability",
+          "better": "higher",
+          "value_a": 0.152056449719199,
+          "display_a": "15%",
+          "value_b": 0.308785288222409,
+          "display_b": "31%",
+          "winner": "b"
+        },
+        {
+          "stat": "Worst game",
+          "better": "higher",
+          "value_a": 1,
+          "display_a": "1.0",
+          "value_b": 1,
+          "display_b": "1.0",
+          "winner": "tie"
+        },
+        {
+          "stat": "Best game",
+          "better": "higher",
+          "value_a": 17,
+          "display_a": "17.0",
+          "value_b": 12,
+          "display_b": "12.0",
+          "winner": "a"
+        },
+        {
+          "stat": "Opportunities per game",
+          "better": "higher",
+          "value_a": 4.5,
+          "display_a": "4.5",
+          "value_b": 3.33333333333333,
+          "display_b": "3.3",
+          "winner": "a"
+        },
+        {
+          "stat": "Games played",
+          "better": "higher",
+          "value_a": 6,
+          "display_a": "6",
+          "value_b": 6,
+          "display_b": "6",
+          "winner": "tie"
+        },
+        {
+          "stat": "Injury status",
+          "better": "lower",
+          "value_a": 0,
+          "display_a": "Healthy",
+          "value_b": 0,
+          "display_b": "Healthy",
+          "winner": "tie"
+        }
+      ],
+      "verdict": "a"
+    }
+  ],
+  "matchups": [
+    {
+      "Opponent": "ARI",
+      "Position": "DEF",
+      "allowed": 5.83333333333333,
+      "allowed_rank": 19
+    },
+    {
+      "Opponent": "ARI",
+      "Position": "K",
+      "allowed": 7.16666666666667,
+      "allowed_rank": 20
+    },
+    {
+      "Opponent": "ARI",
+      "Position": "QB",
+      "allowed": 22.1333333333333,
+      "allowed_rank": 4
+    },
+    {
+      "Opponent": "ARI",
+      "Position": "RB",
+      "allowed": 19.8666666666667,
+      "allowed_rank": 19
+    },
+    {
+      "Opponent": "ARI",
+      "Position": "TE",
+      "allowed": 19.1166666666667,
+      "allowed_rank": 5
+    },
+    {
+      "Opponent": "ARI",
+      "Position": "WR",
+      "allowed": 34.9166666666667,
+      "allowed_rank": 10
+    },
+    {
+      "Opponent": "ATL",
+      "Position": "DEF",
+      "allowed": 9.5,
+      "allowed_rank": 5
+    },
+    {
+      "Opponent": "ATL",
+      "Position": "K",
+      "allowed": 7.66666666666667,
+      "allowed_rank": 18
+    },
+    {
+      "Opponent": "ATL",
+      "Position": "QB",
+      "allowed": 18.6833333333333,
+      "allowed_rank": 12
+    },
+    {
+      "Opponent": "ATL",
+      "Position": "RB",
+      "allowed": 22.6166666666667,
+      "allowed_rank": 12
+    },
+    {
+      "Opponent": "ATL",
+      "Position": "TE",
+      "allowed": 15.6166666666667,
+      "allowed_rank": 11
+    },
+    {
+      "Opponent": "ATL",
+      "Position": "WR",
+      "allowed": 37,
+      "allowed_rank": 7
+    },
+    {
+      "Opponent": "BAL",
+      "Position": "DEF",
+      "allowed": 5.33333333333333,
+      "allowed_rank": 21
+    },
+    {
+      "Opponent": "BAL",
+      "Position": "K",
+      "allowed": 8.66666666666667,
+      "allowed_rank": 15
+    },
+    {
+      "Opponent": "BAL",
+      "Position": "QB",
+      "allowed": 15.3666666666667,
+      "allowed_rank": 22
+    },
+    {
+      "Opponent": "BAL",
+      "Position": "RB",
+      "allowed": 18.5333333333333,
+      "allowed_rank": 27
+    },
+    {
+      "Opponent": "BAL",
+      "Position": "TE",
+      "allowed": 10.45,
+      "allowed_rank": 25
+    },
+    {
+      "Opponent": "BAL",
+      "Position": "WR",
+      "allowed": 33.8166666666667,
+      "allowed_rank": 11
+    },
+    {
+      "Opponent": "BUF",
+      "Position": "DEF",
+      "allowed": 4.16666666666667,
+      "allowed_rank": 25
+    },
+    {
+      "Opponent": "BUF",
+      "Position": "K",
+      "allowed": 6.66666666666667,
+      "allowed_rank": 24
+    },
+    {
+      "Opponent": "BUF",
+      "Position": "QB",
+      "allowed": 22.3333333333333,
+      "allowed_rank": 3
+    },
+    {
+      "Opponent": "BUF",
+      "Position": "RB",
+      "allowed": 27.2666666666667,
+      "allowed_rank": 2
+    },
+    {
+      "Opponent": "BUF",
+      "Position": "TE",
+      "allowed": 15.25,
+      "allowed_rank": 12
+    },
+    {
+      "Opponent": "BUF",
+      "Position": "WR",
+      "allowed": 42.6666666666667,
+      "allowed_rank": 1
+    },
+    {
+      "Opponent": "CAR",
+      "Position": "DEF",
+      "allowed": 3.8,
+      "allowed_rank": 27
+    },
+    {
+      "Opponent": "CAR",
+      "Position": "K",
+      "allowed": 8.8,
+      "allowed_rank": 13
+    },
+    {
+      "Opponent": "CAR",
+      "Position": "QB",
+      "allowed": 18.34,
+      "allowed_rank": 15
+    },
+    {
+      "Opponent": "CAR",
+      "Position": "RB",
+      "allowed": 25.4,
+      "allowed_rank": 5
+    },
+    {
+      "Opponent": "CAR",
+      "Position": "TE",
+      "allowed": 15.96,
+      "allowed_rank": 9
+    },
+    {
+      "Opponent": "CAR",
+      "Position": "WR",
+      "allowed": 29.16,
+      "allowed_rank": 24
+    },
+    {
+      "Opponent": "CHI",
+      "Position": "DEF",
+      "allowed": 8.66666666666667,
+      "allowed_rank": 8
+    },
+    {
+      "Opponent": "CHI",
+      "Position": "K",
+      "allowed": 4.33333333333333,
+      "allowed_rank": 31
+    },
+    {
+      "Opponent": "CHI",
+      "Position": "QB",
+      "allowed": 18.6166666666667,
+      "allowed_rank": 13
+    },
+    {
+      "Opponent": "CHI",
+      "Position": "RB",
+      "allowed": 17.0166666666667,
+      "allowed_rank": 29
+    },
+    {
+      "Opponent": "CHI",
+      "Position": "TE",
+      "allowed": 10.5166666666667,
+      "allowed_rank": 23
+    },
+    {
+      "Opponent": "CHI",
+      "Position": "WR",
+      "allowed": 31.8166666666667,
+      "allowed_rank": 17
+    },
+    {
+      "Opponent": "CIN",
+      "Position": "DEF",
+      "allowed": 6,
+      "allowed_rank": 18
+    },
+    {
+      "Opponent": "CIN",
+      "Position": "K",
+      "allowed": 8.8,
+      "allowed_rank": 13
+    },
+    {
+      "Opponent": "CIN",
+      "Position": "QB",
+      "allowed": 17.26,
+      "allowed_rank": 17
+    },
+    {
+      "Opponent": "CIN",
+      "Position": "RB",
+      "allowed": 18.62,
+      "allowed_rank": 26
+    },
+    {
+      "Opponent": "CIN",
+      "Position": "TE",
+      "allowed": 16.64,
+      "allowed_rank": 8
+    },
+    {
+      "Opponent": "CIN",
+      "Position": "WR",
+      "allowed": 28.22,
+      "allowed_rank": 26
+    },
+    {
+      "Opponent": "CLE",
+      "Position": "DEF",
+      "allowed": 8.83333333333333,
+      "allowed_rank": 7
+    },
+    {
+      "Opponent": "CLE",
+      "Position": "K",
+      "allowed": 9.33333333333333,
+      "allowed_rank": 10
+    },
+    {
+      "Opponent": "CLE",
+      "Position": "QB",
+      "allowed": 16.8333333333333,
+      "allowed_rank": 18
+    },
+    {
+      "Opponent": "CLE",
+      "Position": "RB",
+      "allowed": 16.15,
+      "allowed_rank": 31
+    },
+    {
+      "Opponent": "CLE",
+      "Position": "TE",
+      "allowed": 14.7833333333333,
+      "allowed_rank": 13
+    },
+    {
+      "Opponent": "CLE",
+      "Position": "WR",
+      "allowed": 33.45,
+      "allowed_rank": 12
+    },
+    {
+      "Opponent": "DAL",
+      "Position": "DEF",
+      "allowed": 4.16666666666667,
+      "allowed_rank": 25
+    },
+    {
+      "Opponent": "DAL",
+      "Position": "K",
+      "allowed": 9.83333333333333,
+      "allowed_rank": 8
+    },
+    {
+      "Opponent": "DAL",
+      "Position": "QB",
+      "allowed": 21.4333333333333,
+      "allowed_rank": 5
+    },
+    {
+      "Opponent": "DAL",
+      "Position": "RB",
+      "allowed": 22.7833333333333,
+      "allowed_rank": 11
+    },
+    {
+      "Opponent": "DAL",
+      "Position": "TE",
+      "allowed": 12.8,
+      "allowed_rank": 16
+    },
+    {
+      "Opponent": "DAL",
+      "Position": "WR",
+      "allowed": 37.5666666666667,
+      "allowed_rank": 6
+    },
+    {
+      "Opponent": "DEN",
+      "Position": "DEF",
+      "allowed": 5,
+      "allowed_rank": 22
+    },
+    {
+      "Opponent": "DEN",
+      "Position": "K",
+      "allowed": 5.33333333333333,
+      "allowed_rank": 28
+    },
+    {
+      "Opponent": "DEN",
+      "Position": "QB",
+      "allowed": 16.1,
+      "allowed_rank": 20
+    },
+    {
+      "Opponent": "DEN",
+      "Position": "RB",
+      "allowed": 23.3166666666667,
+      "allowed_rank": 10
+    },
+    {
+      "Opponent": "DEN",
+      "Position": "TE",
+      "allowed": 13.15,
+      "allowed_rank": 15
+    },
+    {
+      "Opponent": "DEN",
+      "Position": "WR",
+      "allowed": 28.6166666666667,
+      "allowed_rank": 25
+    },
+    {
+      "Opponent": "DET",
+      "Position": "DEF",
+      "allowed": 2,
+      "allowed_rank": 30
+    },
+    {
+      "Opponent": "DET",
+      "Position": "K",
+      "allowed": 4.6,
+      "allowed_rank": 30
+    },
+    {
+      "Opponent": "DET",
+      "Position": "QB",
+      "allowed": 27.96,
+      "allowed_rank": 1
+    },
+    {
+      "Opponent": "DET",
+      "Position": "RB",
+      "allowed": 18.66,
+      "allowed_rank": 24
+    },
+    {
+      "Opponent": "DET",
+      "Position": "TE",
+      "allowed": 31.9,
+      "allowed_rank": 1
+    },
+    {
+      "Opponent": "DET",
+      "Position": "WR",
+      "allowed": 40.78,
+      "allowed_rank": 2
+    },
+    {
+      "Opponent": "GB",
+      "Position": "DEF",
+      "allowed": 6.66666666666667,
+      "allowed_rank": 16
+    },
+    {
+      "Opponent": "GB",
+      "Position": "K",
+      "allowed": 4.16666666666667,
+      "allowed_rank": 32
+    },
+    {
+      "Opponent": "GB",
+      "Position": "QB",
+      "allowed": 13.45,
+      "allowed_rank": 28
+    },
+    {
+      "Opponent": "GB",
+      "Position": "RB",
+      "allowed": 26.1666666666667,
+      "allowed_rank": 3
+    },
+    {
+      "Opponent": "GB",
+      "Position": "TE",
+      "allowed": 9.8,
+      "allowed_rank": 28
+    },
+    {
+      "Opponent": "GB",
+      "Position": "WR",
+      "allowed": 32.9666666666667,
+      "allowed_rank": 13
+    },
+    {
+      "Opponent": "HOU",
+      "Position": "DEF",
+      "allowed": 4.5,
+      "allowed_rank": 24
+    },
+    {
+      "Opponent": "HOU",
+      "Position": "K",
+      "allowed": 10.8333333333333,
+      "allowed_rank": 5
+    },
+    {
+      "Opponent": "HOU",
+      "Position": "QB",
+      "allowed": 18.8666666666667,
+      "allowed_rank": 10
+    },
+    {
+      "Opponent": "HOU",
+      "Position": "RB",
+      "allowed": 18.9333333333333,
+      "allowed_rank": 23
+    },
+    {
+      "Opponent": "HOU",
+      "Position": "TE",
+      "allowed": 10.55,
+      "allowed_rank": 22
+    },
+    {
+      "Opponent": "HOU",
+      "Position": "WR",
+      "allowed": 38.1333333333333,
+      "allowed_rank": 5
+    },
+    {
+      "Opponent": "IND",
+      "Position": "DEF",
+      "allowed": 7.33333333333333,
+      "allowed_rank": 12
+    },
+    {
+      "Opponent": "IND",
+      "Position": "K",
+      "allowed": 12.1666666666667,
+      "allowed_rank": 3
+    },
+    {
+      "Opponent": "IND",
+      "Position": "QB",
+      "allowed": 18.7666666666667,
+      "allowed_rank": 11
+    },
+    {
+      "Opponent": "IND",
+      "Position": "RB",
+      "allowed": 23.9166666666667,
+      "allowed_rank": 7
+    },
+    {
+      "Opponent": "IND",
+      "Position": "TE",
+      "allowed": 13.2666666666667,
+      "allowed_rank": 14
+    },
+    {
+      "Opponent": "IND",
+      "Position": "WR",
+      "allowed": 32.2,
+      "allowed_rank": 15
+    },
+    {
+      "Opponent": "JAX",
+      "Position": "DEF",
+      "allowed": 3.5,
+      "allowed_rank": 28
+    },
+    {
+      "Opponent": "JAX",
+      "Position": "K",
+      "allowed": 6.83333333333333,
+      "allowed_rank": 23
+    },
+    {
+      "Opponent": "JAX",
+      "Position": "QB",
+      "allowed": 16.6666666666667,
+      "allowed_rank": 19
+    },
+    {
+      "Opponent": "JAX",
+      "Position": "RB",
+      "allowed": 17.2833333333333,
+      "allowed_rank": 28
+    },
+    {
+      "Opponent": "JAX",
+      "Position": "TE",
+      "allowed": 11.8166666666667,
+      "allowed_rank": 18
+    },
+    {
+      "Opponent": "JAX",
+      "Position": "WR",
+      "allowed": 38.2833333333333,
+      "allowed_rank": 3
+    },
+    {
+      "Opponent": "KC",
+      "Position": "DEF",
+      "allowed": 1.8,
+      "allowed_rank": 31
+    },
+    {
+      "Opponent": "KC",
+      "Position": "K",
+      "allowed": 8,
+      "allowed_rank": 17
+    },
+    {
+      "Opponent": "KC",
+      "Position": "QB",
+      "allowed": 12.64,
+      "allowed_rank": 29
+    },
+    {
+      "Opponent": "KC",
+      "Position": "RB",
+      "allowed": 19.04,
+      "allowed_rank": 22
+    },
+    {
+      "Opponent": "KC",
+      "Position": "TE",
+      "allowed": 19.98,
+      "allowed_rank": 3
+    },
+    {
+      "Opponent": "KC",
+      "Position": "WR",
+      "allowed": 20.68,
+      "allowed_rank": 32
+    },
+    {
+      "Opponent": "LAC",
+      "Position": "DEF",
+      "allowed": 12.3333333333333,
+      "allowed_rank": 1
+    },
+    {
+      "Opponent": "LAC",
+      "Position": "K",
+      "allowed": 9.16666666666667,
+      "allowed_rank": 12
+    },
+    {
+      "Opponent": "LAC",
+      "Position": "QB",
+      "allowed": 15.15,
+      "allowed_rank": 24
+    },
+    {
+      "Opponent": "LAC",
+      "Position": "RB",
+      "allowed": 23.5,
+      "allowed_rank": 9
+    },
+    {
+      "Opponent": "LAC",
+      "Position": "TE",
+      "allowed": 11.0833333333333,
+      "allowed_rank": 21
+    },
+    {
+      "Opponent": "LAC",
+      "Position": "WR",
+      "allowed": 29.3166666666667,
+      "allowed_rank": 23
+    },
+    {
+      "Opponent": "LAR",
+      "Position": "DEF",
+      "allowed": 7.16666666666667,
+      "allowed_rank": 13
+    },
+    {
+      "Opponent": "LAR",
+      "Position": "K",
+      "allowed": 10,
+      "allowed_rank": 7
+    },
+    {
+      "Opponent": "LAR",
+      "Position": "QB",
+      "allowed": 17.4,
+      "allowed_rank": 16
+    },
+    {
+      "Opponent": "LAR",
+      "Position": "RB",
+      "allowed": 19.55,
+      "allowed_rank": 20
+    },
+    {
+      "Opponent": "LAR",
+      "Position": "TE",
+      "allowed": 8.31666666666667,
+      "allowed_rank": 31
+    },
+    {
+      "Opponent": "LAR",
+      "Position": "WR",
+      "allowed": 26.95,
+      "allowed_rank": 29
+    },
+    {
+      "Opponent": "LV",
+      "Position": "DEF",
+      "allowed": 3.33333333333333,
+      "allowed_rank": 29
+    },
+    {
+      "Opponent": "LV",
+      "Position": "K",
+      "allowed": 5.83333333333333,
+      "allowed_rank": 26
+    },
+    {
+      "Opponent": "LV",
+      "Position": "QB",
+      "allowed": 21.2,
+      "allowed_rank": 6
+    },
+    {
+      "Opponent": "LV",
+      "Position": "RB",
+      "allowed": 24,
+      "allowed_rank": 6
+    },
+    {
+      "Opponent": "LV",
+      "Position": "TE",
+      "allowed": 17.7166666666667,
+      "allowed_rank": 7
+    },
+    {
+      "Opponent": "LV",
+      "Position": "WR",
+      "allowed": 32.95,
+      "allowed_rank": 14
+    },
+    {
+      "Opponent": "MIA",
+      "Position": "DEF",
+      "allowed": 10.4,
+      "allowed_rank": 2
+    },
+    {
+      "Opponent": "MIA",
+      "Position": "K",
+      "allowed": 9.2,
+      "allowed_rank": 11
+    },
+    {
+      "Opponent": "MIA",
+      "Position": "QB",
+      "allowed": 19.42,
+      "allowed_rank": 8
+    },
+    {
+      "Opponent": "MIA",
+      "Position": "RB",
+      "allowed": 26.14,
+      "allowed_rank": 4
+    },
+    {
+      "Opponent": "MIA",
+      "Position": "TE",
+      "allowed": 19.82,
+      "allowed_rank": 4
+    },
+    {
+      "Opponent": "MIA",
+      "Position": "WR",
+      "allowed": 22.62,
+      "allowed_rank": 31
+    },
+    {
+      "Opponent": "MIN",
+      "Position": "DEF",
+      "allowed": 6.8,
+      "allowed_rank": 15
+    },
+    {
+      "Opponent": "MIN",
+      "Position": "K",
+      "allowed": 5.6,
+      "allowed_rank": 27
+    },
+    {
+      "Opponent": "MIN",
+      "Position": "QB",
+      "allowed": 9.58,
+      "allowed_rank": 32
+    },
+    {
+      "Opponent": "MIN",
+      "Position": "RB",
+      "allowed": 14.3,
+      "allowed_rank": 32
+    },
+    {
+      "Opponent": "MIN",
+      "Position": "TE",
+      "allowed": 7.62,
+      "allowed_rank": 32
+    },
+    {
+      "Opponent": "MIN",
+      "Position": "WR",
+      "allowed": 27.14,
+      "allowed_rank": 27
+    },
+    {
+      "Opponent": "NE",
+      "Position": "DEF",
+      "allowed": 8.66666666666667,
+      "allowed_rank": 8
+    },
+    {
+      "Opponent": "NE",
+      "Position": "K",
+      "allowed": 7.16666666666667,
+      "allowed_rank": 20
+    },
+    {
+      "Opponent": "NE",
+      "Position": "QB",
+      "allowed": 14.6333333333333,
+      "allowed_rank": 27
+    },
+    {
+      "Opponent": "NE",
+      "Position": "RB",
+      "allowed": 20.65,
+      "allowed_rank": 16
+    },
+    {
+      "Opponent": "NE",
+      "Position": "TE",
+      "allowed": 10.1833333333333,
+      "allowed_rank": 26
+    },
+    {
+      "Opponent": "NE",
+      "Position": "WR",
+      "allowed": 31.7333333333333,
+      "allowed_rank": 18
+    },
+    {
+      "Opponent": "NO",
+      "Position": "DEF",
+      "allowed": 7.66666666666667,
+      "allowed_rank": 11
+    },
+    {
+      "Opponent": "NO",
+      "Position": "K",
+      "allowed": 9.5,
+      "allowed_rank": 9
+    },
+    {
+      "Opponent": "NO",
+      "Position": "QB",
+      "allowed": 18.5333333333333,
+      "allowed_rank": 14
+    },
+    {
+      "Opponent": "NO",
+      "Position": "RB",
+      "allowed": 29.7,
+      "allowed_rank": 1
+    },
+    {
+      "Opponent": "NO",
+      "Position": "TE",
+      "allowed": 17.9166666666667,
+      "allowed_rank": 6
+    },
+    {
+      "Opponent": "NO",
+      "Position": "WR",
+      "allowed": 31.6166666666667,
+      "allowed_rank": 19
+    },
+    {
+      "Opponent": "NYG",
+      "Position": "DEF",
+      "allowed": 9.33333333333333,
+      "allowed_rank": 6
+    },
+    {
+      "Opponent": "NYG",
+      "Position": "K",
+      "allowed": 5,
+      "allowed_rank": 29
+    },
+    {
+      "Opponent": "NYG",
+      "Position": "QB",
+      "allowed": 21.0833333333333,
+      "allowed_rank": 7
+    },
+    {
+      "Opponent": "NYG",
+      "Position": "RB",
+      "allowed": 21.6166666666667,
+      "allowed_rank": 15
+    },
+    {
+      "Opponent": "NYG",
+      "Position": "TE",
+      "allowed": 12.3166666666667,
+      "allowed_rank": 17
+    },
+    {
+      "Opponent": "NYG",
+      "Position": "WR",
+      "allowed": 29.7,
+      "allowed_rank": 22
+    },
+    {
+      "Opponent": "NYJ",
+      "Position": "DEF",
+      "allowed": 6.5,
+      "allowed_rank": 17
+    },
+    {
+      "Opponent": "NYJ",
+      "Position": "K",
+      "allowed": 7.33333333333333,
+      "allowed_rank": 19
+    },
+    {
+      "Opponent": "NYJ",
+      "Position": "QB",
+      "allowed": 15.1166666666667,
+      "allowed_rank": 25
+    },
+    {
+      "Opponent": "NYJ",
+      "Position": "RB",
+      "allowed": 21.9333333333333,
+      "allowed_rank": 14
+    },
+    {
+      "Opponent": "NYJ",
+      "Position": "TE",
+      "allowed": 9.83333333333333,
+      "allowed_rank": 27
+    },
+    {
+      "Opponent": "NYJ",
+      "Position": "WR",
+      "allowed": 30.2,
+      "allowed_rank": 21
+    },
+    {
+      "Opponent": "PHI",
+      "Position": "DEF",
+      "allowed": 5.83333333333333,
+      "allowed_rank": 19
+    },
+    {
+      "Opponent": "PHI",
+      "Position": "K",
+      "allowed": 6.5,
+      "allowed_rank": 25
+    },
+    {
+      "Opponent": "PHI",
+      "Position": "QB",
+      "allowed": 19.4,
+      "allowed_rank": 9
+    },
+    {
+      "Opponent": "PHI",
+      "Position": "RB",
+      "allowed": 20.2,
+      "allowed_rank": 18
+    },
+    {
+      "Opponent": "PHI",
+      "Position": "TE",
+      "allowed": 11.6833333333333,
+      "allowed_rank": 20
+    },
+    {
+      "Opponent": "PHI",
+      "Position": "WR",
+      "allowed": 38.2666666666667,
+      "allowed_rank": 4
+    },
+    {
+      "Opponent": "PIT",
+      "Position": "DEF",
+      "allowed": 8.16666666666667,
+      "allowed_rank": 10
+    },
+    {
+      "Opponent": "PIT",
+      "Position": "K",
+      "allowed": 12.8333333333333,
+      "allowed_rank": 1
+    },
+    {
+      "Opponent": "PIT",
+      "Position": "QB",
+      "allowed": 11.6333333333333,
+      "allowed_rank": 31
+    },
+    {
+      "Opponent": "PIT",
+      "Position": "RB",
+      "allowed": 20.45,
+      "allowed_rank": 17
+    },
+    {
+      "Opponent": "PIT",
+      "Position": "TE",
+      "allowed": 11.7333333333333,
+      "allowed_rank": 19
+    },
+    {
+      "Opponent": "PIT",
+      "Position": "WR",
+      "allowed": 31.0833333333333,
+      "allowed_rank": 20
+    },
+    {
+      "Opponent": "SEA",
+      "Position": "DEF",
+      "allowed": 10,
+      "allowed_rank": 3
+    },
+    {
+      "Opponent": "SEA",
+      "Position": "K",
+      "allowed": 7,
+      "allowed_rank": 22
+    },
+    {
+      "Opponent": "SEA",
+      "Position": "QB",
+      "allowed": 12.3333333333333,
+      "allowed_rank": 30
+    },
+    {
+      "Opponent": "SEA",
+      "Position": "RB",
+      "allowed": 22.1,
+      "allowed_rank": 13
+    },
+    {
+      "Opponent": "SEA",
+      "Position": "TE",
+      "allowed": 8.91666666666667,
+      "allowed_rank": 30
+    },
+    {
+      "Opponent": "SEA",
+      "Position": "WR",
+      "allowed": 22.7166666666667,
+      "allowed_rank": 30
+    },
+    {
+      "Opponent": "SF",
+      "Position": "DEF",
+      "allowed": 1.5,
+      "allowed_rank": 32
+    },
+    {
+      "Opponent": "SF",
+      "Position": "K",
+      "allowed": 8.66666666666667,
+      "allowed_rank": 15
+    },
+    {
+      "Opponent": "SF",
+      "Position": "QB",
+      "allowed": 14.9166666666667,
+      "allowed_rank": 26
+    },
+    {
+      "Opponent": "SF",
+      "Position": "RB",
+      "allowed": 23.8,
+      "allowed_rank": 8
+    },
+    {
+      "Opponent": "SF",
+      "Position": "TE",
+      "allowed": 9.18333333333333,
+      "allowed_rank": 29
+    },
+    {
+      "Opponent": "SF",
+      "Position": "WR",
+      "allowed": 27.05,
+      "allowed_rank": 28
+    },
+    {
+      "Opponent": "TB",
+      "Position": "DEF",
+      "allowed": 9.83333333333333,
+      "allowed_rank": 4
+    },
+    {
+      "Opponent": "TB",
+      "Position": "K",
+      "allowed": 12.8333333333333,
+      "allowed_rank": 1
+    },
+    {
+      "Opponent": "TB",
+      "Position": "QB",
+      "allowed": 15.3333333333333,
+      "allowed_rank": 23
+    },
+    {
+      "Opponent": "TB",
+      "Position": "RB",
+      "allowed": 17,
+      "allowed_rank": 30
+    },
+    {
+      "Opponent": "TB",
+      "Position": "TE",
+      "allowed": 15.6666666666667,
+      "allowed_rank": 10
+    },
+    {
+      "Opponent": "TB",
+      "Position": "WR",
+      "allowed": 31.9,
+      "allowed_rank": 16
+    },
+    {
+      "Opponent": "TEN",
+      "Position": "DEF",
+      "allowed": 7,
+      "allowed_rank": 14
+    },
+    {
+      "Opponent": "TEN",
+      "Position": "K",
+      "allowed": 11.3333333333333,
+      "allowed_rank": 4
+    },
+    {
+      "Opponent": "TEN",
+      "Position": "QB",
+      "allowed": 15.55,
+      "allowed_rank": 21
+    },
+    {
+      "Opponent": "TEN",
+      "Position": "RB",
+      "allowed": 19.1,
+      "allowed_rank": 21
+    },
+    {
+      "Opponent": "TEN",
+      "Position": "TE",
+      "allowed": 10.4666666666667,
+      "allowed_rank": 24
+    },
+    {
+      "Opponent": "TEN",
+      "Position": "WR",
+      "allowed": 35.8833333333333,
+      "allowed_rank": 9
+    },
+    {
+      "Opponent": "WAS",
+      "Position": "DEF",
+      "allowed": 4.83333333333333,
+      "allowed_rank": 23
+    },
+    {
+      "Opponent": "WAS",
+      "Position": "K",
+      "allowed": 10.3333333333333,
+      "allowed_rank": 6
+    },
+    {
+      "Opponent": "WAS",
+      "Position": "QB",
+      "allowed": 22.7333333333333,
+      "allowed_rank": 2
+    },
+    {
+      "Opponent": "WAS",
+      "Position": "RB",
+      "allowed": 18.6333333333333,
+      "allowed_rank": 25
+    },
+    {
+      "Opponent": "WAS",
+      "Position": "TE",
+      "allowed": 21.5166666666667,
+      "allowed_rank": 2
+    },
+    {
+      "Opponent": "WAS",
+      "Position": "WR",
+      "allowed": 35.95,
+      "allowed_rank": 8
+    }
+  ],
+  "summary2025": [
+    {
+      "Player": "Josh Allen",
+      "Team": "BUF",
+      "total": 319.9,
+      "avg": 24.6076923076923,
+      "sd": 10.4618721666234,
+      "tproj": 409.03,
+      "aproj": 24.0605882352941,
+      "cv": 0.42514641502377,
+      "dependability": 0.57485358497623
+    },
+    {
+      "Player": "Jameis Winston",
+      "Team": "NYG",
+      "total": 45.2,
+      "avg": 22.6,
+      "sd": 14.9906637611548,
+      "tproj": 36.06,
+      "aproj": 2.12117647058824,
+      "cv": 0.663303706245788,
+      "dependability": 0.336696293754212
+    },
+    {
+      "Player": "Jaxon Smith-Njigba",
+      "Team": "SEA",
+      "total": 287.4,
+      "avg": 22.1076923076923,
+      "sd": 8.16184839547815,
+      "tproj": 322.64,
+      "aproj": 18.9788235294118,
+      "cv": 0.369185905153848,
+      "dependability": 0.630814094846152
+    },
+    {
+      "Player": "Patrick Mahomes",
+      "Team": "KC",
+      "total": 282.6,
+      "avg": 21.7384615384615,
+      "sd": 7.48348609289575,
+      "tproj": 371.43,
+      "aproj": 21.8488235294118,
+      "cv": 0.344250952610208,
+      "dependability": 0.655749047389792
+    },
+    {
+      "Player": "Puka Nacua",
+      "Team": "LAR",
+      "total": 258.9,
+      "avg": 21.575,
+      "sd": 9.06262303991711,
+      "tproj": 304.8,
+      "aproj": 17.9294117647059,
+      "cv": 0.420052052835092,
+      "dependability": 0.579947947164908
+    },
+    {
+      "Player": "Dak Prescott",
+      "Team": "DAL",
+      "total": 269.2,
+      "avg": 20.7076923076923,
+      "sd": 7.2096534288482,
+      "tproj": 352.24,
+      "aproj": 20.72,
+      "cv": 0.348163055627885,
+      "dependability": 0.651836944372115
+    },
+    {
+      "Player": "Drake Maye",
+      "Team": "NE",
+      "total": 265.6,
+      "avg": 20.4307692307692,
+      "sd": 4.7690643064415,
+      "tproj": 350.31,
+      "aproj": 20.6064705882353,
+      "cv": 0.233425587288176,
+      "dependability": 0.766574412711824
+    },
+    {
+      "Player": "Matthew Stafford",
+      "Team": "LAR",
+      "total": 263,
+      "avg": 20.2307692307692,
+      "sd": 6.61606436579238,
+      "tproj": 308.24,
+      "aproj": 18.1317647058824,
+      "cv": 0.327029797548673,
+      "dependability": 0.672970202451327
+    },
+    {
+      "Player": "Rashee Rice",
+      "Team": "KC",
+      "total": 138,
+      "avg": 19.7142857142857,
+      "sd": 8.26487115677524,
+      "tproj": 172.58,
+      "aproj": 10.1517647058824,
+      "cv": 0.419232594908889,
+      "dependability": 0.580767405091111
+    },
+    {
+      "Player": "Drake London",
+      "Team": "ATL",
+      "total": 177,
+      "avg": 19.6666666666667,
+      "sd": 11.2238585165708,
+      "tproj": 192.31,
+      "aproj": 11.3123529411765,
+      "cv": 0.570704670334111,
+      "dependability": 0.429295329665889
+    }
+  ]
+}
