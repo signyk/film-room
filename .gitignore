@@ -1,5 +1,7 @@
 # Python
 __pycache__/
+*.egg-info/
+build/
 .venv/
 uv.lock
 .python-version

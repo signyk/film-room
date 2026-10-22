@@ -10,6 +10,14 @@ dependencies = [
     "types-requests>=2.32.4.20250913",
 ]
 
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+# Only ff/ is Python; the rest of the repository (web/, worker/, data/, ...) is not part of the package
+[tool.setuptools]
+packages = ["ff", "ff.service"]
+
 [tool.pyright]
 venvPath = "."
 venv = ".venv"
