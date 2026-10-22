@@ -57,13 +57,15 @@ a { color: inherit; }
 
 .topbar {
   position: sticky; top: 0; z-index: 30; height: 64px;
-  display: flex; align-items: center; gap: 32px; padding: 0 var(--pad);
+  display: flex; align-items: center; gap: 0; padding: 0 var(--pad);
   background: var(--nav);
 }
-.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; flex: none; }
+/* The brand is as wide as the sidebar, so the tabs start past the line beside it, and the first tab's
+   icon lines up with the page title below (its 14px padding taken off the canvas padding) */
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; flex: none; width: calc(var(--sidebar) - var(--pad)); }
 .brand img { width: 44px; height: 44px; display: block; }
 .brand span { font: 700 20px/1 var(--display); letter-spacing: 0.01em; }
-.tabs { display: flex; gap: 4px; height: 100%; overflow-x: auto; scrollbar-width: none; }
+.tabs { display: flex; gap: 4px; height: 100%; overflow-x: auto; scrollbar-width: none; margin-left: calc(var(--pad) - 14px); }
 .tabs::-webkit-scrollbar { display: none; }
 .tabs a {
   display: flex; align-items: center; gap: 8px; padding: 0 14px; height: 100%;
@@ -385,6 +387,7 @@ table.data tbody tr:hover td.sticky { background: var(--raised); }
   :root { --pad: 16px; --gap: 16px; --fs-title: 24px; }
   /* Top bar: the name and a Filters button. The views move to a bar along the bottom. */
   .topbar { height: 56px; gap: 12px; padding: 0 var(--pad); }
+  .brand { width: auto; }
   .brand img { width: 36px; height: 36px; }
   .brand span { font-size: 18px; }
   .filter-button {
@@ -396,7 +399,7 @@ table.data tbody tr:hover td.sticky { background: var(--raised); }
   .filter-button:active { background: rgba(255, 255, 255, 0.16); }
 
   .tabs {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; height: calc(66px + env(safe-area-inset-bottom));
+    position: fixed; left: 0; right: 0; bottom: 0; margin: 0; z-index: 50; height: calc(66px + env(safe-area-inset-bottom));
     display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; padding-bottom: env(safe-area-inset-bottom);
     background: var(--nav); border-top: 1px solid rgba(255, 255, 255, 0.12); overflow: visible;
   }
